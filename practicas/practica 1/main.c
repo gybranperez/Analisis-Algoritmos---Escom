@@ -16,13 +16,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "tiempo.h"
-//*****************************************************************
-//DEFINICION DE CONSTANTES DEL PROGRAMA
-//*****************************************************************
-
-//********************************************************************************
-//DECLARACION DE ESTRUCTURAS
-//********************************************************************************
+#include <math.h>
 
 //*****************************************************************
 //DECLARACIÓN DE FUNCIONES
@@ -31,9 +25,7 @@ void Burbuja(int p[],int n);
 void BurbujaOptimizada(int p[],int n);
 void insercion(int p[],int n);
 void Seleccion(int A[], int n);
-//*****************************************************************
-//VARIABLES GLOBALES
-//*****************************************************************
+void shell(int A[],int n);
 
 //*****************************************************************
 //PROGRAMA PRINCIPAL 
@@ -79,8 +71,7 @@ int main (int argc, char* argv[])
 	//******************************************************************	
 	//Algoritmo
 	//******************************************************************	
-	insercion(p,n);
-
+	shell(p,n);
 
 	//******************************************************************
 
@@ -88,9 +79,6 @@ int main (int argc, char* argv[])
 	//Evaluar los tiempos de ejecución 
 	//******************************************************************
 	
-	
-	
-
 	//Terminar programa normalmente	
 	exit (0);	
 }
@@ -233,4 +221,33 @@ void Seleccion(int A[], int n)
 			printf("%d\n",A[i]);
 		}
 */		
+}
+
+void shell(int A[],int n)
+{
+	int k=trunc(n/2);
+	int b=0,i=0,temp=0;
+		while(k>=1)
+		{
+			b=1;
+			while(b!=0)
+			{
+               b=0;
+               	for(i=k;i<=(n-1);i++)
+               	{
+               		if(A[i-k] > A[i])
+               		{
+               			temp=A[i];
+               			A[i]=A[i-k];
+               			A[i-k]=temp;
+               			b=b+1;
+               		}
+               	}
+			}
+			k=trunc(k/2);
+		}
+		for(i=0;i<n;i++)
+		{
+			printf("%d\n",A[i]);
+		}
 }
