@@ -12,7 +12,7 @@ import numpy as np
 #   sudo pip3 install -U scikit-learn
 #    ejecutar solo despues de haber generado los .csv
 #
-#----ejecución: python3 graficador.py
+#----ejecución: $python3 graficador.py
 #
 
 names = ("burbuja", "Burbuja Optimizada", "Insercion", "Seleccion", "Shell") #, "arbolbin.csv"
