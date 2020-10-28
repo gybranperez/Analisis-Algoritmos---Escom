@@ -10,4 +10,4 @@ subprocess.call("make")
 with open("../numeros10millones") as myinp:
     for n in numeros:
         for m in modos:
-            subprocess.call(["./main", str(n), str(m)], stdin=myinp)
+            subprocess.call(["./main", str(n), str(m)], stdin=myinp)    #Ejecuta ./main n m < numeros10millones
