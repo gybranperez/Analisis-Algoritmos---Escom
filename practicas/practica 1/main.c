@@ -71,8 +71,8 @@ int main (int argc, char* argv[])
 	//******************************************************************	
 	//Algoritmo
 	//******************************************************************	
-	shell(p,n);
-
+	//shell(p,n);
+	Burbuja(p,n)
 	//******************************************************************
 
 	//******************************************************************	
@@ -88,9 +88,8 @@ int main (int argc, char* argv[])
 //************************************************************************
 void Burbuja(int p[],int n)
 {
-		double utime0, stime0, wtime0,utime1, stime1, wtime1; //Variables para medición de tiempos
-
-
+	double utime0, stime0, wtime0,utime1, stime1, wtime1; //Variables para medición de tiempos
+	uswtime(&utime0, &stime0, &wtime0);
 	int i, j, aux;
 		for(i = 0; i <= n-1;i++)
 				{
