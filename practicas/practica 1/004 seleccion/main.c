@@ -42,7 +42,7 @@ int main (int argc, char* argv[])
 	double utime0, stime0, wtime0,utime1, stime1, wtime1; //Variables para medición de tiempos
 	int n; 	//n determina el tamaño del algorito dado por argumento al ejecutar
 	int i=0,j,cambios=1; //Variables para loops
-	int aux; //Variable auxiliar de burbuja
+	int k,p,temp; //Variable auxiliar de burbuja
 	int *A;
 	//******************************************************************	
 	//Recepción y decodificación de argumentos
@@ -63,7 +63,6 @@ int main (int argc, char* argv[])
 	for(i=0;i<n;i++){
 		scanf("%d",&A[i]);
 	}
-	i=0;
 	//******************************************************************	
 	//Iniciar el conteo del tiempo para las evaluaciones de rendimiento
 	//******************************************************************	
@@ -73,21 +72,21 @@ int main (int argc, char* argv[])
 	//******************************************************************	
 	//Algoritmo
 	//******************************************************************	
-	while((i<(n-1)) && (cambios==1)){
-		cambios = 0;
-		
-		for (j = 0; j < n-i-1; j++) 
-		{ 
-			if (A[j] > A[j+1]) 
-			{ 
-				aux = A[j];
-				A[j] = A[j+1];
-				A[j+1] = aux; 
-				cambios = 1; 
+	for (k=0; k <= n-2 ;k++)
+	{
+		p=k;
+			for(i=k+1; i <= n-1 ;i++)
+			{
+				if(A[i]<A[p])
+				{
+					p=i;
+				}
 			} 
-		}
-		i++;
-	} 
+			temp = A[p];
+			A[p] = A[k];
+			A[k] = temp;
+
+	}
 	//******************************************************************
 
 	//******************************************************************	
@@ -95,9 +94,12 @@ int main (int argc, char* argv[])
 	//******************************************************************
 	uswtime(&utime1, &stime1, &wtime1);
 	
+	/*for (i = 0; i < n; i++)
+	{
+		printf("%d - ",A[i]);
+	}*/
 	
-	
-	printf("\n\nBurbuja optimizada con %d numeros",n);
+	printf("\n\nInsercion con %d numeros",n);
 	//Cálculo del tiempo de ejecución del programa
 	printf("\n");
 	printf("real (Tiempo total)  %.10f s\n",  wtime1 - wtime0);

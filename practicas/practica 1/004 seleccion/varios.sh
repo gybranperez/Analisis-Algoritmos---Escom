@@ -14,8 +14,8 @@ gcc main.c tiempo.c
 ./a.out 3000000 < numeros10millones.txt >>sal.txt
 ./a.out 4000000 < numeros10millones.txt >>sal.txt
 ./a.out 5000000 < numeros10millones.txt >>sal.txt
-#./a.out 6000000 < numeros10millones.txt >>sal.txt
-#./a.out 7000000 < numeros10millones.txt >>sal.txt
-#./a.out 8000000 < numeros10millones.txt >>sal.txt
-#./a.out 9000000 < numeros10millones.txt >>sal.txt
-#./a.out 10000000 < numeros10millones.txt >>sal.txt
+./a.out 6000000 < numeros10millones.txt >>sal.txt
+./a.out 7000000 < numeros10millones.txt >>sal.txt
+./a.out 8000000 < numeros10millones.txt >>sal.txt
+./a.out 9000000 < numeros10millones.txt >>sal.txt
+./a.out 10000000 < numeros10millones.txt >>sal.txt
