@@ -141,3 +141,16 @@ sys (Tiempo en acciónes de E/S)  7.1367430000e+00 s
 CPU/Wall   98.8812172338 % 
 
 --------------------------------------
+Burbuja con 2000000 numeros
+real (Tiempo total)  22405.9610691071 s
+user (Tiempo de procesamiento en CPU) 19929.4979550000 s
+sys (Tiempo en acciónes de E/S)  40.0951130000 s
+CPU/Wall   89.1262508509 % 
+
+
+real (Tiempo total)  2.2405961069e+04 s
+user (Tiempo de procesamiento en CPU) 1.9929497955e+04 s
+sys (Tiempo en acciónes de E/S)  4.0095113000e+01 s
+CPU/Wall   89.1262508509 % 
+
+--------------------------------------
