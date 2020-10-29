@@ -46,10 +46,13 @@ for csvn in csv_names:
     plt.plot(data["n"], data["user"], "bo", label="user")   #se dibujan los datos "user"
     #plt.plot(data["n"], data["sys"], "go", label="sys")     #se dibujan los datos "sys"
     #plt.plot(data["n"], data["CPU/Wall"], "mo", label="wall")  #se dibujan los datos "wall"
-    plt.xlabel("n")                                         #nombramos el label x "n"
+    plt.xlabel("n\n" + "f(n) = "+str(lm.coef_[1]) + "*n+"+str(lm.coef_[2])+"*n^2")                                         #nombramos el label x "n"
     plt.ylabel("tiempo (s)")                                #nombramos el label y "tiempo (s)"
+    figure = plt.gcf()
+
+    figure.set_size_inches(8, 6)
     plt.legend()                                            #se muestran las leyendas de colores
-    plt.savefig(png_names[i])                               #se guarda la gráfica en archivo png
+    plt.savefig(png_names[i], dpi=100)                               #se guarda la gráfica en archivo png
     plt.clf()                                               #se limpia el plot
     i += 1
 
@@ -71,10 +74,13 @@ for csvn in csv_names:                                      #se crean las gráfi
 
     plt.title("Comparativo: real")
     plt.plot(data["n"], data["real"], colcir[i], label=names[i])
-    plt.xlabel("n")
+    plt.xlabel("n\n")
     plt.ylabel("tiempo (s)")
+    figure = plt.gcf()
+
+    figure.set_size_inches(8, 6)
     plt.legend()
-    plt.savefig("real.png")
+    plt.savefig("real.png", dpi=100)
     i+=1
 plt.clf()
 
@@ -97,10 +103,13 @@ for csvn in csv_names:                                      #se crean las gráfi
     plt.plot(n_array, fn_predic, collin[i], label="pred "+names[i])   #se dibuja la predicción "real" en la gráfica 
     plt.title("Comparativo: user")
     plt.plot(data["n"], data["user"], colcir[i], label=names[i])
-    plt.xlabel("n")
+    plt.xlabel("n\n")
     plt.ylabel("tiempo (s)")
+    figure = plt.gcf()
+
+    figure.set_size_inches(8, 6)
     plt.legend()
-    plt.savefig("user.png")
+    plt.savefig("user.png", dpi=100)
     i+=1
 plt.clf()
 
@@ -123,15 +132,18 @@ for csvn in csv_names:
 
     plt.plot(n_array, fn_predic, "y", label="prediccion")   #se dibuja la predicción "real" en la gráfica
     
-    plt.title(names[i])                                     #título de la gráfica
+    plt.title(names[i] + " 100k")                                     #título de la gráfica
     plt.plot(data["n"], data["real"], "ro", label="real")   #se dibujan los datos "real"
     plt.plot(data["n"], data["user"], "bo", label="user")   #se dibujan los datos "user"
     #plt.plot(data["n"], data["sys"], "go", label="sys")     #se dibujan los datos "sys"
     #plt.plot(data["n"], data["CPU/Wall"], "mo", label="wall")  #se dibujan los datos "wall"
-    plt.xlabel("n")                                         #nombramos el label x "n"
+    plt.xlabel("n\n" + "f(n) = "+str(lm.coef_[1]) + "*n+"+str(lm.coef_[2])+"*n^2")                                         #nombramos el label x "n"
     plt.ylabel("tiempo (s)")                                #nombramos el label y "tiempo (s)"
+    figure = plt.gcf()
+
+    figure.set_size_inches(8, 6)
     plt.legend()                                            #se muestran las leyendas de colores
-    plt.savefig(png_names100k[i])                               #se guarda la gráfica en archivo png
+    plt.savefig(png_names100k[i], dpi=100)                               #se guarda la gráfica en archivo png
     plt.clf()                                               #se limpia el plot
     i += 1
     
@@ -157,8 +169,11 @@ for csvn in csv_names:                                      #se crean las gráfi
     plt.plot(data["n"] , data["real"], colcir[i], label=names[i])
     plt.xlabel("n")
     plt.ylabel("tiempo (s)")
+    figure = plt.gcf()
+
+    figure.set_size_inches(8, 6)
     plt.legend()
-    plt.savefig("real100k.png")
+    plt.savefig("real100k.png", dpi=100)
     i+=1
 plt.clf()
 
@@ -182,7 +197,9 @@ for csvn in csv_names:                                      #se crean las gráfi
     plt.plot(data["n"] , data["user"], colcir[i], label=names[i])
     plt.xlabel("n")
     plt.ylabel("tiempo (s)")
+    figure = plt.gcf()
+    figure.set_size_inches(8, 6)
     plt.legend()
-    plt.savefig("user100k.png")
+    plt.savefig("user100k.png", dpi=100)
     i+=1
 plt.clf()    
