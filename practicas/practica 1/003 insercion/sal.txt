@@ -193,3 +193,18 @@ sys (Tiempo en acciónes de E/S)  1.3144767000e+01 s
 CPU/Wall   91.4626622056 % 
 
 --------------------------------------
+
+
+Insercion con 4000000 numeros
+real (Tiempo total)  52020.1262831688 s
+user (Tiempo de procesamiento en CPU) 25118.3596190000 s
+sys (Tiempo en acciónes de E/S)  99.8258070000 s
+CPU/Wall   48.4777474178 % 
+
+
+real (Tiempo total)  5.2020126283e+04 s
+user (Tiempo de procesamiento en CPU) 2.5118359619e+04 s
+sys (Tiempo en acciónes de E/S)  9.9825807000e+01 s
+CPU/Wall   48.4777474178 % 
+
+--------------------------------------
