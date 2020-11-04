@@ -1,0 +1,300 @@
+
+
+Arbol binario con 100 numeros
+real (Tiempo total)  0.0000238419 s
+user (Tiempo de procesamiento en CPU) 0.0000290000 s
+sys (Tiempo en acciónes de E/S)  0.0000000000 s
+CPU/Wall   121.6348160000 % 
+
+
+real (Tiempo total)  2.3841857910e-05 s
+user (Tiempo de procesamiento en CPU) 2.9000000000e-05 s
+sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
+CPU/Wall   121.6348160000 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 1000 numeros
+real (Tiempo total)  0.0002980232 s
+user (Tiempo de procesamiento en CPU) 0.0002570000 s
+sys (Tiempo en acciónes de E/S)  0.0000000000 s
+CPU/Wall   86.2348902400 % 
+
+
+real (Tiempo total)  2.9802322388e-04 s
+user (Tiempo de procesamiento en CPU) 2.5700000000e-04 s
+sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
+CPU/Wall   86.2348902400 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 5000 numeros
+real (Tiempo total)  0.0011019707 s
+user (Tiempo de procesamiento en CPU) 0.0011060000 s
+sys (Tiempo en acciónes de E/S)  0.0000000000 s
+CPU/Wall   100.3656474254 % 
+
+
+real (Tiempo total)  1.1019706726e-03 s
+user (Tiempo de procesamiento en CPU) 1.1060000000e-03 s
+sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
+CPU/Wall   100.3656474254 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 10000 numeros
+real (Tiempo total)  0.0032689571 s
+user (Tiempo de procesamiento en CPU) 0.0032740000 s
+sys (Tiempo en acciónes de E/S)  0.0000000000 s
+CPU/Wall   100.1542651594 % 
+
+
+real (Tiempo total)  3.2689571381e-03 s
+user (Tiempo de procesamiento en CPU) 3.2740000000e-03 s
+sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
+CPU/Wall   100.1542651594 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 50000 numeros
+real (Tiempo total)  0.0258729458 s
+user (Tiempo de procesamiento en CPU) 0.0252170000 s
+sys (Tiempo en acciónes de E/S)  0.0006050000 s
+CPU/Wall   99.8030924428 % 
+
+
+real (Tiempo total)  2.5872945786e-02 s
+user (Tiempo de procesamiento en CPU) 2.5217000000e-02 s
+sys (Tiempo en acciónes de E/S)  6.0500000000e-04 s
+CPU/Wall   99.8030924428 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 100000 numeros
+real (Tiempo total)  0.0644168854 s
+user (Tiempo de procesamiento en CPU) 0.0634260000 s
+sys (Tiempo en acciónes de E/S)  0.0000000000 s
+CPU/Wall   98.4617614307 % 
+
+
+real (Tiempo total)  6.4416885376e-02 s
+user (Tiempo de procesamiento en CPU) 6.3426000000e-02 s
+sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
+CPU/Wall   98.4617614307 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 200000 numeros
+real (Tiempo total)  0.1631641388 s
+user (Tiempo de procesamiento en CPU) 0.1544970000 s
+sys (Tiempo en acciónes de E/S)  0.0082400000 s
+CPU/Wall   99.7382152738 % 
+
+
+real (Tiempo total)  1.6316413879e-01 s
+user (Tiempo de procesamiento en CPU) 1.5449700000e-01 s
+sys (Tiempo en acciónes de E/S)  8.2400000000e-03 s
+CPU/Wall   99.7382152738 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 400000 numeros
+real (Tiempo total)  0.4863519669 s
+user (Tiempo de procesamiento en CPU) 0.4539680000 s
+sys (Tiempo en acciónes de E/S)  0.0000520000 s
+CPU/Wall   93.3521463752 % 
+
+
+real (Tiempo total)  4.8635196686e-01 s
+user (Tiempo de procesamiento en CPU) 4.5396800000e-01 s
+sys (Tiempo en acciónes de E/S)  5.2000000000e-05 s
+CPU/Wall   93.3521463752 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 600000 numeros
+real (Tiempo total)  1.0140631199 s
+user (Tiempo de procesamiento en CPU) 0.7715300000 s
+sys (Tiempo en acciónes de E/S)  0.0189280000 s
+CPU/Wall   77.9495856320 % 
+
+
+real (Tiempo total)  1.0140631199e+00 s
+user (Tiempo de procesamiento en CPU) 7.7153000000e-01 s
+sys (Tiempo en acciónes de E/S)  1.8928000000e-02 s
+CPU/Wall   77.9495856320 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 800000 numeros
+real (Tiempo total)  1.0710239410 s
+user (Tiempo de procesamiento en CPU) 0.9824990000 s
+sys (Tiempo en acciónes de E/S)  0.0277460000 s
+CPU/Wall   94.3251557028 % 
+
+
+real (Tiempo total)  1.0710239410e+00 s
+user (Tiempo de procesamiento en CPU) 9.8249900000e-01 s
+sys (Tiempo en acciónes de E/S)  2.7746000000e-02 s
+CPU/Wall   94.3251557028 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 1000000 numeros
+real (Tiempo total)  1.4532170296 s
+user (Tiempo de procesamiento en CPU) 1.2980880000 s
+sys (Tiempo en acciónes de E/S)  0.0119920000 s
+CPU/Wall   90.1503335938 % 
+
+
+real (Tiempo total)  1.4532170296e+00 s
+user (Tiempo de procesamiento en CPU) 1.2980880000e+00 s
+sys (Tiempo en acciónes de E/S)  1.1992000000e-02 s
+CPU/Wall   90.1503335938 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 2000000 numeros
+real (Tiempo total)  2.7767121792 s
+user (Tiempo de procesamiento en CPU) 2.7227300000 s
+sys (Tiempo en acciónes de E/S)  0.0278260000 s
+CPU/Wall   99.0580161898 % 
+
+
+real (Tiempo total)  2.7767121792e+00 s
+user (Tiempo de procesamiento en CPU) 2.7227300000e+00 s
+sys (Tiempo en acciónes de E/S)  2.7826000000e-02 s
+CPU/Wall   99.0580161898 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 3000000 numeros
+real (Tiempo total)  4.4368720055 s
+user (Tiempo de procesamiento en CPU) 4.3512260000 s
+sys (Tiempo en acciónes de E/S)  0.0681130000 s
+CPU/Wall   99.6048340939 % 
+
+
+real (Tiempo total)  4.4368720055e+00 s
+user (Tiempo de procesamiento en CPU) 4.3512260000e+00 s
+sys (Tiempo en acciónes de E/S)  6.8113000000e-02 s
+CPU/Wall   99.6048340939 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 4000000 numeros
+real (Tiempo total)  6.3213820457 s
+user (Tiempo de procesamiento en CPU) 6.2205300000 s
+sys (Tiempo en acciónes de E/S)  0.0799590000 s
+CPU/Wall   99.6694861093 % 
+
+
+real (Tiempo total)  6.3213820457e+00 s
+user (Tiempo de procesamiento en CPU) 6.2205300000e+00 s
+sys (Tiempo en acciónes de E/S)  7.9959000000e-02 s
+CPU/Wall   99.6694861093 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 5000000 numeros
+real (Tiempo total)  8.3932969570 s
+user (Tiempo de procesamiento en CPU) 8.2765750000 s
+sys (Tiempo en acciónes de E/S)  0.0758000000 s
+CPU/Wall   99.5124447851 % 
+
+
+real (Tiempo total)  8.3932969570e+00 s
+user (Tiempo de procesamiento en CPU) 8.2765750000e+00 s
+sys (Tiempo en acciónes de E/S)  7.5800000000e-02 s
+CPU/Wall   99.5124447851 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 6000000 numeros
+real (Tiempo total)  10.3951849937 s
+user (Tiempo de procesamiento en CPU) 10.2018630000 s
+sys (Tiempo en acciónes de E/S)  0.1599080000 s
+CPU/Wall   99.6785627792 % 
+
+
+real (Tiempo total)  1.0395184994e+01 s
+user (Tiempo de procesamiento en CPU) 1.0201863000e+01 s
+sys (Tiempo en acciónes de E/S)  1.5990800000e-01 s
+CPU/Wall   99.6785627792 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 7000000 numeros
+real (Tiempo total)  12.6404421329 s
+user (Tiempo de procesamiento en CPU) 12.4168660000 s
+sys (Tiempo en acciónes de E/S)  0.1960420000 s
+CPU/Wall   99.7821742890 % 
+
+
+real (Tiempo total)  1.2640442133e+01 s
+user (Tiempo de procesamiento en CPU) 1.2416866000e+01 s
+sys (Tiempo en acciónes de E/S)  1.9604200000e-01 s
+CPU/Wall   99.7821742890 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 8000000 numeros
+real (Tiempo total)  14.7061970234 s
+user (Tiempo de procesamiento en CPU) 14.4594730000 s
+sys (Tiempo en acciónes de E/S)  0.1917160000 s
+CPU/Wall   99.6259534446 % 
+
+
+real (Tiempo total)  1.4706197023e+01 s
+user (Tiempo de procesamiento en CPU) 1.4459473000e+01 s
+sys (Tiempo en acciónes de E/S)  1.9171600000e-01 s
+CPU/Wall   99.6259534446 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 9000000 numeros
+real (Tiempo total)  17.7521760464 s
+user (Tiempo de procesamiento en CPU) 17.5287680000 s
+sys (Tiempo en acciónes de E/S)  0.1877970000 s
+CPU/Wall   99.7993989792 % 
+
+
+real (Tiempo total)  1.7752176046e+01 s
+user (Tiempo de procesamiento en CPU) 1.7528768000e+01 s
+sys (Tiempo en acciónes de E/S)  1.8779700000e-01 s
+CPU/Wall   99.7993989792 % 
+
+-----------------------------------------------------------------------------------
+
+
+Arbol binario con 10000000 numeros
+real (Tiempo total)  20.2413890362 s
+user (Tiempo de procesamiento en CPU) 19.9343880000 s
+sys (Tiempo en acciónes de E/S)  0.2079460000 s
+CPU/Wall   99.5106312319 % 
+
+
+real (Tiempo total)  2.0241389036e+01 s
+user (Tiempo de procesamiento en CPU) 1.9934388000e+01 s
+sys (Tiempo en acciónes de E/S)  2.0794600000e-01 s
+CPU/Wall   99.5106312319 % 
+
+-----------------------------------------------------------------------------------

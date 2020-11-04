@@ -116,7 +116,6 @@ void guardarRecorrido(arbol *a,int A[], int n)
 	nodoA **pila = (nodoA **)malloc(n*sizeof(arbol));
 	int top = -1;
 	int i = 0;
-
 	do
 	{
 		while(aux != NULL)
@@ -179,8 +178,7 @@ void Ordenar(int A[], int n)
 	printf("CPU/Wall   %.10f %% \n",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0));
 	printf("\n");
 
-	printf("--------------------------------------------------------------------------------------------------\n");
-
-
+	printf("-----------------------------------------------------------------------------------\n");
+	
 }
 
