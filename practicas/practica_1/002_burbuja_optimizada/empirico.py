@@ -25,6 +25,7 @@ fig.add_trace(go.Scatter(x=numeros, y=user,
                     mode='lines+markers',
                     name='user'))
 fig.add_trace(go.Scatter(x=numeros, y=sys,
-                    mode='lines+markers', name='sys'))
+                    mode='lines+markers', 
+                    name='sys'))
 
 fig.show()

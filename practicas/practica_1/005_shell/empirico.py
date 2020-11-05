@@ -33,13 +33,5 @@ fig.add_trace(go.Scatter(x=numeros, y=user,
                     name='user'))
 fig.add_trace(go.Scatter(x=numeros, y=sys,
                     mode='lines+markers', name='sys'))
-annotations=[]
-annotations.append(dict(xref='paper', yref='paper', x=0.0, y=1.05,
-                              xanchor='left', yanchor='bottom',
-                              text='Resultados empíricos de algoritmo de Selección',
-                              font=dict(family='Arial',
-                                        size=15,
-                                        color='rgb(37,37,37)'),
-                              showarrow=False))
-fig.update_layout(annotations=annotations)
+
 fig.show()

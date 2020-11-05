@@ -17,13 +17,17 @@ sys = [0,0,0,0,0.000488,0.015999,0.023992,0.104015,0.823577,
         7.556456,7.136743,40.095113]
 # Create traces
 fig = go.Figure()
+           
 fig.add_trace(go.Scatter(x=numeros, y=real,
+                line_shape='spline',
                     mode='lines+markers',
                     name='real'))
 fig.add_trace(go.Scatter(x=numeros, y=user,
                     mode='lines+markers',
+                    line_shape='spline',
                     name='user'))
 fig.add_trace(go.Scatter(x=numeros, y=sys,
+                line_shape='spline',
                     mode='lines+markers', name='sys'))
 
 fig.show()
