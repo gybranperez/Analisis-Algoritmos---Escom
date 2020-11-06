@@ -161,6 +161,10 @@ void Ordenar(int A[], int n)
 
 	uswtime(&utime1, &stime1, &wtime1);
 	
+	for(i=0; i<n ; i++)
+	{
+		printf("\n%d",A[i]);
+	}
 	printf("\n\nArbol binario con %d numeros",n);
 	//Cálculo del tiempo de ejecución del programa
 	printf("\n");
