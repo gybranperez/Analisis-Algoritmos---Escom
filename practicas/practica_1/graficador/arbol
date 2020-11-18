@@ -16,7 +16,9 @@
 #include <string.h>
 #include <stdbool.h>
 #include "tiempo.h"
+#include <stdlib.h>
 #include <math.h>
+#include "arbol.h"
 
 //*****************************************************************
 //DECLARACIÓN DE FUNCIONES
@@ -26,6 +28,10 @@ void BurbujaOptimizada(int p[],int n);
 void insercion(int p[],int n);
 void Seleccion(int A[], int n);
 void shell(int A[],int n);
+void insertar(arbol *a,int e);
+void guardarRecorrido(arbol *a,int A[], int n);
+void Ordenar(int A[], int n);
+
 
 //*****************************************************************
 //PROGRAMA PRINCIPAL 
@@ -71,8 +77,8 @@ int main (int argc, char* argv[])
 	//******************************************************************	
 	//Algoritmo
 	//******************************************************************	
-	//shell(p,n);
-	Burbuja(p,n)
+	Ordenar(p,n);
+
 	//******************************************************************
 
 	//******************************************************************	
@@ -86,141 +92,7 @@ int main (int argc, char* argv[])
 //************************************************************************
 //DEFINICIÓN DE FUNCIONES 
 //************************************************************************
-void Burbuja(int p[],int n)
-{
-	double utime0, stime0, wtime0,utime1, stime1, wtime1; //Variables para medición de tiempos
-	uswtime(&utime0, &stime0, &wtime0);
-	int i, j, aux;
-		for(i = 0; i <= n-1;i++)
-				{
-					for(j=0 ; j <= (n-2)-i ; j++)
-							if(p[j] > p[j+1]){
-								aux=p[j];
-								p[j]=p[j+1];
-								p[j+1]= aux;
-								}
 
-				}
-				uswtime(&utime1, &stime1, &wtime1);
-				//Cálculo del tiempo de ejecución del programa
-	printf("\n");
-	printf("real (Tiempo total)  %.10f s\n",  wtime1 - wtime0);
-	printf("user (Tiempo de procesamiento en CPU) %.10f s\n",  utime1 - utime0);
-	printf("sys (Tiempo en acciónes de E/S)  %.10f s\n",  stime1 - stime0);
-	printf("CPU/Wall   %.10f %% \n",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0));
-	printf("\n");
-}
-
-void BurbujaOptimizada(int p[],int n)
-{
-	double utime0, stime0, wtime0,utime1, stime1, wtime1; //Variables para medición de tiempos
-	//bool cambios=true;
-	int i=0,j,aux,cambios=1;
-		
-		while((i<n-1) && (cambios != 0))
-		{
-			cambios=0;
-			for(j=0;j<=(n-2)-i;j++)
-			{
-				if(p[j] > p[j+1])
-				{
-					aux=p[j];
-					p[j]=p[j+1];
-					p[j+1]=aux;
-					cambios=1;
-				}
-			}
-			i=i+1;
-		}
-		uswtime(&utime1, &stime1, &wtime1);
-				//Cálculo del tiempo de ejecución del programa
-
-		printf("\n");
-	printf("real (Tiempo total)  %.10f s\n",  wtime1 - wtime0);
-	printf("user (Tiempo de procesamiento en CPU) %.10f s\n",  utime1 - utime0);
-	printf("sys (Tiempo en acciónes de E/S)  %.10f s\n",  stime1 - stime0);
-	printf("CPU/Wall   %.10f %% \n",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0));
-	printf("\n");
-
-		for(i=0;i<n;i++)
-		{
-			printf("%d\n",p[i]);
-		}
-
-}
-
-void insercion(int p[], int n)
-{
-	//Variables para medición de tiempos
-	double utime0, stime0, wtime0,utime1, stime1, wtime1;
-	uswtime(&utime1, &stime1, &wtime1);
-
-	int i,j,temp;
-
-	for(i=0 ; i <= n-1 ;i++)
-	{
-		j=i;
-		temp=p[i];
-		while((j>0) && (temp<p[j-1]))
-			{
-				p[j]=p[j-1];
-				j--;
-			}
-			p[j]=temp;
-	}
-	uswtime(&utime1, &stime1, &wtime1);
-				//Cálculo del tiempo de ejecución del programa
-
-			printf("Insercion\n");
-	printf("real (Tiempo total)  %.10e s\n",  wtime1 - wtime0);
-	printf("user (Tiempo de procesamiento en CPU) %.10e s\n",  utime1 - utime0);
-	printf("sys (Tiempo en acciónes de E/S)  %.10e s\n",  stime1 - stime0);
-	printf("CPU/Wall   %.10e %% \n",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0));
-	printf("\n");
-/*
-		for(i=0;i<n;i++)
-		{
-			printf("%d\n",p[i]);
-		}
-		*/
-}
-
-void Seleccion(int A[], int n)
-{
-	double utime0, stime0, wtime0,utime1, stime1, wtime1; //Variables para medición de tiempos
-	int i,j,k,p,temp;
-
-	uswtime(&utime1, &stime1, &wtime1);
-				//Cálculo del tiempo de ejecución del programa
-	for (k=0; k <= n-2 ;k++)
-	{
-		p=k;
-			for(i=k+1; i <= n-1 ;i++)
-			{
-				if(A[i]<A[p])
-				{
-					p=i;
-				}
-			} 
-			temp = A[p];
-			A[p] = A[k];
-			A[k] = temp;
-
-	}
-	uswtime(&utime1, &stime1, &wtime1);
-		printf("Seleccion\n");
-	printf("real (Tiempo total)  %.10e s\n",  wtime1 - wtime0);
-	printf("user (Tiempo de procesamiento en CPU) %.10e s\n",  utime1 - utime0);
-	printf("sys (Tiempo en acciónes de E/S)  %.10e s\n",  stime1 - stime0);
-	printf("CPU/Wall   %.10f %% \n",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0));
-	printf("\n");
-/*
-		for(i=0;i<n;i++)
-		{
-			printf("%d\n",A[i]);
-		}
-*/		
-}
 
 void shell(int A[],int n)
 {
@@ -250,3 +122,78 @@ void shell(int A[],int n)
 			printf("%d\n",A[i]);
 		}
 }
+
+void insertar(arbol *a,int e)
+{
+	arbol *p=a;
+		while(*p !=NULL)
+		{
+			if( e > ((*p)->raiz))
+				{
+				p= &((*p)->de);
+				}
+			else{
+				p=&((*p)->iz);
+			}
+		}
+*p = (nodoA *)malloc(sizeof(nodoA));
+(*p)->raiz = e;
+
+(*p)->iz = NULL;
+(*p)->de = NULL;
+
+}
+
+void guardarRecorrido(arbol *a,int A[], int n)
+{
+	pos aux = *a;
+	nodoA **pila = (nodoA **)malloc(n* sizeof(arbol));
+	int top = -1;
+	int i = 0;
+
+	do
+	{
+		while(aux != NULL)
+		{
+			pila[top++]=aux;
+			aux=aux -> iz;
+
+		}
+
+	if(top >= 0)
+	{
+		aux = pila[top--];
+		A[i++] = aux -> raiz;
+		aux = aux -> de;
+	}
+
+	}while(aux != NULL || top >= 0);
+free(pila);
+	
+	
+
+}
+
+void Ordenar(int A[], int n)
+{
+	double utime0, stime0, wtime0,utime1, stime1, wtime1; //Variables para medición de tiempos
+	int i,j;
+	arbol ArbolBus;
+	construir(&ArbolBus);
+	for(i=0; i<n ; i++)
+	{
+		insertar(&ArbolBus,A[i]);
+	}
+	guardarRecorrido(&ArbolBus,A,n);
+
+	destruir(&ArbolBus);
+
+	uswtime(&utime1, &stime1, &wtime1);
+
+	for(i=0; i<n ; i++)
+	{
+		printf("%d\n",A[i]);
+	}
+
+}
+

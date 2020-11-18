@@ -1,0 +1,300 @@
+
+
+Shell con 100 numeros
+real (Tiempo total)  0.0000140667 s
+user (Tiempo de procesamiento en CPU) 0.0000180000 s
+sys (Tiempo en acciónes de E/S)  0.0000000000 s
+CPU/Wall   127.9618169492 % 
+
+
+real (Tiempo total)  1.4066696167e-05 s
+user (Tiempo de procesamiento en CPU) 1.8000000000e-05 s
+sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
+CPU/Wall   127.9618169492 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 1000 numeros
+real (Tiempo total)  0.0002830029 s
+user (Tiempo de procesamiento en CPU) 0.0000000000 s
+sys (Tiempo en acciónes de E/S)  0.0002850000 s
+CPU/Wall   100.7056983993 % 
+
+
+real (Tiempo total)  2.8300285339e-04 s
+user (Tiempo de procesamiento en CPU) 0.0000000000e+00 s
+sys (Tiempo en acciónes de E/S)  2.8500000000e-04 s
+CPU/Wall   100.7056983993 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 5000 numeros
+real (Tiempo total)  0.0026338100 s
+user (Tiempo de procesamiento en CPU) 0.0026390000 s
+sys (Tiempo en acciónes de E/S)  0.0000000000 s
+CPU/Wall   100.1970512899 % 
+
+
+real (Tiempo total)  2.6338100433e-03 s
+user (Tiempo de procesamiento en CPU) 2.6390000000e-03 s
+sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
+CPU/Wall   100.1970512899 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 10000 numeros
+real (Tiempo total)  0.0058519840 s
+user (Tiempo de procesamiento en CPU) 0.0058550000 s
+sys (Tiempo en acciónes de E/S)  0.0000000000 s
+CPU/Wall   100.0515376655 % 
+
+
+real (Tiempo total)  5.8519840240e-03 s
+user (Tiempo de procesamiento en CPU) 5.8550000000e-03 s
+sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
+CPU/Wall   100.0515376655 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 50000 numeros
+real (Tiempo total)  0.0474009514 s
+user (Tiempo de procesamiento en CPU) 0.0471970000 s
+sys (Tiempo en acciónes de E/S)  0.0000000000 s
+CPU/Wall   99.5697314515 % 
+
+
+real (Tiempo total)  4.7400951385e-02 s
+user (Tiempo de procesamiento en CPU) 4.7197000000e-02 s
+sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
+CPU/Wall   99.5697314515 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 100000 numeros
+real (Tiempo total)  0.1281430721 s
+user (Tiempo de procesamiento en CPU) 0.1277170000 s
+sys (Tiempo en acciónes de E/S)  0.0000000000 s
+CPU/Wall   99.6675027988 % 
+
+
+real (Tiempo total)  1.2814307213e-01 s
+user (Tiempo de procesamiento en CPU) 1.2771700000e-01 s
+sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
+CPU/Wall   99.6675027988 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 200000 numeros
+real (Tiempo total)  0.2999341488 s
+user (Tiempo de procesamiento en CPU) 0.2976450000 s
+sys (Tiempo en acciónes de E/S)  0.0000000000 s
+CPU/Wall   99.2367828746 % 
+
+
+real (Tiempo total)  2.9993414879e-01 s
+user (Tiempo de procesamiento en CPU) 2.9764500000e-01 s
+sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
+CPU/Wall   99.2367828746 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 400000 numeros
+real (Tiempo total)  0.6898109913 s
+user (Tiempo de procesamiento en CPU) 0.6831200000 s
+sys (Tiempo en acciónes de E/S)  0.0004660000 s
+CPU/Wall   99.0975801537 % 
+
+
+real (Tiempo total)  6.8981099129e-01 s
+user (Tiempo de procesamiento en CPU) 6.8312000000e-01 s
+sys (Tiempo en acciónes de E/S)  4.6600000000e-04 s
+CPU/Wall   99.0975801537 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 600000 numeros
+real (Tiempo total)  1.0371899605 s
+user (Tiempo de procesamiento en CPU) 1.0315980000 s
+sys (Tiempo en acciónes de E/S)  0.0000000000 s
+CPU/Wall   99.4608547428 % 
+
+
+real (Tiempo total)  1.0371899605e+00 s
+user (Tiempo de procesamiento en CPU) 1.0315980000e+00 s
+sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
+CPU/Wall   99.4608547428 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 800000 numeros
+real (Tiempo total)  1.8032808304 s
+user (Tiempo de procesamiento en CPU) 1.7836620000 s
+sys (Tiempo en acciónes de E/S)  0.0001210000 s
+CPU/Wall   98.9187579630 % 
+
+
+real (Tiempo total)  1.8032808304e+00 s
+user (Tiempo de procesamiento en CPU) 1.7836620000e+00 s
+sys (Tiempo en acciónes de E/S)  1.2100000000e-04 s
+CPU/Wall   98.9187579630 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 1000000 numeros
+real (Tiempo total)  1.8961780071 s
+user (Tiempo de procesamiento en CPU) 1.8931610000 s
+sys (Tiempo en acciónes de E/S)  0.0000000000 s
+CPU/Wall   99.8408900897 % 
+
+
+real (Tiempo total)  1.8961780071e+00 s
+user (Tiempo de procesamiento en CPU) 1.8931610000e+00 s
+sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
+CPU/Wall   99.8408900897 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 2000000 numeros
+real (Tiempo total)  4.8705399036 s
+user (Tiempo de procesamiento en CPU) 4.8684860000 s
+sys (Tiempo en acciónes de E/S)  0.0000170000 s
+CPU/Wall   99.9581790996 % 
+
+
+real (Tiempo total)  4.8705399036e+00 s
+user (Tiempo de procesamiento en CPU) 4.8684860000e+00 s
+sys (Tiempo en acciónes de E/S)  1.7000000000e-05 s
+CPU/Wall   99.9581790996 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 3000000 numeros
+real (Tiempo total)  7.3312909603 s
+user (Tiempo de procesamiento en CPU) 7.3173000000 s
+sys (Tiempo en acciónes de E/S)  0.0000000000 s
+CPU/Wall   99.8091610279 % 
+
+
+real (Tiempo total)  7.3312909603e+00 s
+user (Tiempo de procesamiento en CPU) 7.3173000000e+00 s
+sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
+CPU/Wall   99.8091610279 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 4000000 numeros
+real (Tiempo total)  11.3332650661 s
+user (Tiempo de procesamiento en CPU) 11.2860190000 s
+sys (Tiempo en acciónes de E/S)  0.0121540000 s
+CPU/Wall   99.6903622571 % 
+
+
+real (Tiempo total)  1.1333265066e+01 s
+user (Tiempo de procesamiento en CPU) 1.1286019000e+01 s
+sys (Tiempo en acciónes de E/S)  1.2154000000e-02 s
+CPU/Wall   99.6903622571 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 5000000 numeros
+real (Tiempo total)  15.4709041119 s
+user (Tiempo de procesamiento en CPU) 15.4526750000 s
+sys (Tiempo en acciónes de E/S)  0.0000000000 s
+CPU/Wall   99.8821716447 % 
+
+
+real (Tiempo total)  1.5470904112e+01 s
+user (Tiempo de procesamiento en CPU) 1.5452675000e+01 s
+sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
+CPU/Wall   99.8821716447 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 6000000 numeros
+real (Tiempo total)  18.0323770046 s
+user (Tiempo de procesamiento en CPU) 18.0127370000 s
+sys (Tiempo en acciónes de E/S)  0.0000000000 s
+CPU/Wall   99.8910847715 % 
+
+
+real (Tiempo total)  1.8032377005e+01 s
+user (Tiempo de procesamiento en CPU) 1.8012737000e+01 s
+sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
+CPU/Wall   99.8910847715 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 7000000 numeros
+real (Tiempo total)  21.3181970119 s
+user (Tiempo de procesamiento en CPU) 21.2641410000 s
+sys (Tiempo en acciónes de E/S)  0.0079550000 s
+CPU/Wall   99.7837480725 % 
+
+
+real (Tiempo total)  2.1318197012e+01 s
+user (Tiempo de procesamiento en CPU) 2.1264141000e+01 s
+sys (Tiempo en acciónes de E/S)  7.9550000000e-03 s
+CPU/Wall   99.7837480725 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 8000000 numeros
+real (Tiempo total)  29.2157881260 s
+user (Tiempo de procesamiento en CPU) 29.0580270000 s
+sys (Tiempo en acciónes de E/S)  0.0277460000 s
+CPU/Wall   99.5549833349 % 
+
+
+real (Tiempo total)  2.9215788126e+01 s
+user (Tiempo de procesamiento en CPU) 2.9058027000e+01 s
+sys (Tiempo en acciónes de E/S)  2.7746000000e-02 s
+CPU/Wall   99.5549833349 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 9000000 numeros
+real (Tiempo total)  29.7550110817 s
+user (Tiempo de procesamiento en CPU) 29.7348630000 s
+sys (Tiempo en acciónes de E/S)  0.0038200000 s
+CPU/Wall   99.9451249349 % 
+
+
+real (Tiempo total)  2.9755011082e+01 s
+user (Tiempo de procesamiento en CPU) 2.9734863000e+01 s
+sys (Tiempo en acciónes de E/S)  3.8200000000e-03 s
+CPU/Wall   99.9451249349 % 
+
+--------------------------------------------------------------------------------------------------
+
+
+Shell con 10000000 numeros
+real (Tiempo total)  36.6118822098 s
+user (Tiempo de procesamiento en CPU) 36.5154790000 s
+sys (Tiempo en acciónes de E/S)  0.0040910000 s
+CPU/Wall   99.7478627041 % 
+
+
+real (Tiempo total)  3.6611882210e+01 s
+user (Tiempo de procesamiento en CPU) 3.6515479000e+01 s
+sys (Tiempo en acciónes de E/S)  4.0910000000e-03 s
+CPU/Wall   99.7478627041 % 
+
+--------------------------------------------------------------------------------------------------
