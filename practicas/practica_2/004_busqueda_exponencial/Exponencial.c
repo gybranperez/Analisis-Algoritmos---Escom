@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
     return 0; 
 } 
 
-int busquedaBinaria(int arr[], int l, int r, int x) 
+/*int busquedaBinaria(int arr[], int l, int r, int x) 
 { 
     while (l <= r) { 
         int m = l + (r - l) / 2; 
@@ -91,7 +91,7 @@ int busquedaBinaria(int arr[], int l, int r, int x)
     // if we reach here, then element was 
     // not present 
     return -1; 
-} 
+} */
 int busquedaExponencial(int arr[], int n, int x)
 {
     // If x is present at firt location itself
