@@ -10,7 +10,7 @@ int busquedaExponencial(int arr[], int n, int x);
 
 int main(int argc, char* argv[]) 
 { 
-    int n, m, *p, i, result;
+    int n, *p, i, result;
     int datos[20] = {322486, 14700764, 3128036, 6337399, 61396,
 	10393545, 2147445644, 1295390003, 450057883, 187645041,
 	1980098116, 152503, 5000, 1493283650, 214826, 1843349527,
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 
     for (i = 0; i < 20; i++)
     {
-        result = busquedaExponencial(p, n - 1, m);
+        result = busquedaExponencial(p, n - 1, datos[i]);
         (result == -1) ? printf("Element is not present"
                             " in array") 
                    : printf("Element is present at "
