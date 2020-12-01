@@ -1,116 +1,150 @@
-#include <stdio.h>
+//*****************************************************************
+/*Elaborado por:
+	Pérez Juarez Carlos Gybran
+	Pérez Sereno Ricardo Erick
+	Ramirez Flores Juan
+*/
+//M. EN C. EDGARDO ADRIÁN FRANCO MARTÍNEZ
+//Curso: Análisis de algoritmos
+//ESCOM-IPN
+//Ejemplo de medición de tiempo en C y recepción de parametros en C bajo UNIX
+//Compilación: "gcc main.c tiempo.c
+//Ejecución: "./script.sh
+//*****************************************************************
+//*****************************************************************
+
+//*****************************************************************
+//LIBRERIAS INCLUIDAS
+//*****************************************************************
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "tiempo.h"
-#define MIN(a,b) (((a)<(b))?(a):(b))
+//*****************************************************************
+//DEFINICION DE CONSTANTES DEL PROGRAMA
+//*****************************************************************
+#define MIN(a, b) (((a) < (b)) ? (a) : (b))
+//********************************************************************************
+//DECLARACION DE ESTRUCTURAS
+//********************************************************************************
 
-int fibMonaccianSearch(int arr[], int x, int n) ;
+//*****************************************************************
+//DECLARACIÓN DE FUNCIONES
+//*****************************************************************
+int busquedaFibonacci(int A[], int n, int x);
+//*****************************************************************
+//VARIABLES GLOBALES
+//*****************************************************************
 
-int main(int argc, char* argv[]){
-    int n, *p, result, i;
-    int datos[20] = {322486, 14700764, 3128036, 6337399, 61396,
-	10393545, 2147445644, 1295390003, 450057883, 187645041,
-	1980098116, 152503, 5000, 1493283650, 214826, 1843349527,
-	1360839354, 2109248666 , 2147470852, 0};
-    double utime0, stime0, wtime0, utime1, stime1, wtime1;
+//*****************************************************************
+//PROGRAMA PRINCIPAL
+//*****************************************************************
+int main(int argc, char *argv[])
+{
+	//******************************************************************
+	//Variables del main
+	//******************************************************************
+	int n;				   //n determina el tamaño del algorito dado por argumento al ejecutar
+	int i, j, bandera = 0; //Variables para loops
+	int *A;
+    float suma = 0, promedio = 0;
+	int numeros[20] = {322468, 14700764, 3128036, 6337399, 61396, 10393545, 2147445644, 129539003, 450057883, 187645041, 1980098116, 152503, 5000, 1493283650, 214826, 1843349527, 1360839354, 2109248666, 2147470852, 0};
+	n = atoi(argv[1]);
 
-    if (argc!=2) {
-		printf("\nIndique el número a buscar - Ejemplo: [user@equipo]$ %s 40000 500000\n",argv[0]);
-		exit(1);
-	} 
-    
-	n=atoi(argv[1]);
-
-    p=malloc(n*sizeof(int));
-    if(p==NULL) exit(1);
-    
-    uswtime(&utime0, &stime0, &wtime0);
-    for(i=0;i<n;i++)
+	int encontrados;
+	//******************************************************************
+	//Recepción y decodificación de argumentos
+	//******************************************************************
+	A = (int *)malloc(n * sizeof(int));
+	for (i = 0; i < n; i++)
 	{
-		scanf("%d",&p[i]);
+		scanf("%d", &A[i]);
 	}
-
-    for  (i = 0; i < 20; i++)
-    {
-        result = fibMonaccianSearch(p, datos[i], n);
-        (result == -1) ? printf("Element is not present"
-                            " in array\n") 
-                   : printf("Element is present at "
-                            "index %d\n", 
-                            result); 
-    }
-
-    uswtime(&utime1, &stime1, &wtime1);
+    printf("Busqueda Fibonacci n = %d\n", n);
+	printf("Num Buscado,Nums Arreglo,Encontrado,Real,CPU,E/S,CPU/Wall\n");
+	
+	//******************************************************************
+	//Algoritmo
+	//******************************************************************
+	for (i = 0; i < 20; i++)
+	{
+		double utime0, stime0, wtime0, utime1, stime1, wtime1; //Variables para medición de tiempos
+		uswtime(&utime0, &stime0, &wtime0);
+		encontrados = busquedaFibonacci(A, n - 1, numeros[i]);
+		//******************************************************************
+		//Evaluar los tiempos de ejecución
+		//******************************************************************
+		uswtime(&utime1, &stime1, &wtime1);
+    if(encontrados != -1)
+        printf("%d,%d,SI,%.15e,%.15e,%.15e,%.8f %%\n",numeros[i],n,wtime1-wtime0,utime1-utime0,stime1-stime0,100.0*(utime1-utime0+stime1-stime0));
+    else
+        printf("%d,%d,NO,%.15e,%.15e,%.15e,%.8f %%\n",numeros[i],n,wtime1-wtime0,utime1-utime0,stime1-stime0,100.0*(utime1-utime0+stime1-stime0));
     
-    
-    
-
-    printf("\n");
-	printf("real (Tiempo total)  %.10f s\n",  wtime1 - wtime0);
-	printf("user (Tiempo de procesamiento en CPU's) %.10f s\n",  utime1 - utime0);
-	//printf("%d threads (Tiempo de procesamiento aproximado por cada thread en CPU) %.10f s\n", NumThreads,(utime1 - utime0)/NumThreads);	
-	printf("sys (Tiempo en acciónes de E/S)  %.3f s\n",  stime1 - stime0);
-	printf("CPU/Wall   %.10f %% \n",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0));
-	printf("\n");
-
-    free(p);
-    return 0;
+	//Terminar programa normalmente
+	suma = suma + wtime1 - wtime0;
+    //Terminar programa normalmente
+	}
+    printf("\nPromedio Tiempo Total: %.20f s\n\n", suma/20);
+	//******************************************************************
+	return 0;
 }
 
-int fibMonaccianSearch(int arr[], int x, int n) 
-{ 
-    /* Initialize fibonacci numbers */
-    int fibMMm2 = 0;   // (m-2)'th Fibonacci No. 
-    int fibMMm1 = 1;   // (m-1)'th Fibonacci No. 
-    int fibM = fibMMm2 + fibMMm1;  // m'th Fibonacci 
-  
-    /* fibM is going to store the smallest Fibonacci 
-       Number greater than or equal to n */
-    while (fibM < n) 
-    { 
-        fibMMm2 = fibMMm1; 
-        fibMMm1 = fibM; 
-        fibM  = fibMMm2 + fibMMm1; 
-    } 
-  
-    // Marks the eliminated range from front 
-    int offset = -1; 
-  
-    /* while there are elements to be inspected. Note that 
-       we compare arr[fibMm2] with x. When fibM becomes 1, 
-       fibMm2 becomes 0 */
-    while (fibM > 1) 
-    { 
-        // Check if fibMm2 is a valid location 
-        int i = MIN(offset+fibMMm2, n-1); 
-  
-        /* If x is greater than the value at index fibMm2, 
-           cut the subarray array from offset to i */
-        if (arr[i] < x) 
-        { 
-            fibM  = fibMMm1; 
-            fibMMm1 = fibMMm2; 
-            fibMMm2 = fibM - fibMMm1; 
-            offset = i; 
-        } 
-  
-        /* If x is greater than the value at index fibMm2, 
-           cut the subarray after i+1  */
-        else if (arr[i] > x) 
-        { 
-            fibM  = fibMMm2; 
-            fibMMm1 = fibMMm1 - fibMMm2; 
-            fibMMm2 = fibM - fibMMm1; 
-        } 
-  
-        /* element found. return index */
-        else return i; 
-    } 
-  
-    /* comparing the last element with x */
-    if(fibMMm1 && arr[offset+1]==x)return offset+1; 
-  
-    /*element not found. return -1 */
-    return -1; 
-} 
+//************************************************************************
+//Busqueda Fibonacci, busca el valor de x en el arreglo
+//Esta función recibe un arreglo de enteros, un numero a buscar y el tamaño del arreglo
+//Devuelve -1 si no se encontro el numero.
+//************************************************************************
+int busquedaFibonacci(int A[], int n, int x)
+{
+	/* Inicializamos los numeros de fibonacci*/
+	int fibMMm2 = 0;			  // (m-2)'th número de fibonacci
+	int fibMMm1 = 1;			  // (m-1)'th número de fibonacci
+	int fibM = fibMMm2 + fibMMm1; // m número de fibonacci
+
+	/* fibM Almacenara el menor número de fib.*/
+	while (fibM < n)
+	{
+		fibMMm2 = fibMMm1;
+		fibMMm1 = fibM;
+		fibM = fibMMm2 + fibMMm1;
+	}
+
+	// se marca el rango de eliminacion.
+	int offset = -1;
+
+	/* SI bien hay elementos que serán inspeccionados.
+    se copara a[fibMm2] con x. cuando fibM se convierte en 1, fibMm2 se 	convierte en 0 */
+	while (fibM > 1)
+	{
+		// Checa si fibMm2 es una ubicación valida
+		int i = MIN(offset + fibMMm2, n - 1);
+
+		/* Comprueba si fibMm2 es valido*/
+		if (A[i] < x)
+		{
+			fibM = fibMMm1;
+			fibMMm1 = fibMMm2;
+			fibMMm2 = fibM - fibMMm1;
+			offset = i;
+		}
+
+		/* si x es mayor que el indice de fibMm2,se corta el subarreglo i+1  */
+		else if (A[i] > x)
+		{
+			fibM = fibMMm2;
+			fibMMm1 = fibMMm1 - fibMMm2;
+			fibMMm2 = fibM - fibMMm1;
+		}
+
+		/* elemento encontrado, retorna indice*/
+		else
+			return i;
+	}
+
+	/* compara el último elemento con x*/
+	if (fibMMm1 && A[offset + 1] == x)
+		return offset + 1;
+
+	/*si no encuentra el elemento retorna -1*/
+	return -1;
+}

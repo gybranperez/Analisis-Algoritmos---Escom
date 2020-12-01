@@ -1,125 +1,125 @@
+//*****************************************************************
+/*Elaborado por:
+	Pérez Juarez Carlos Gybran
+	Pérez Sereno Ricardo Erick
+	Ramirez Flores Juan
+*/
+//M. EN C. EDGARDO ADRIÁN FRANCO MARTÍNEZ 
+//Curso: Análisis de algoritmos
+//ESCOM-IPN
+//Ejemplo de medición de tiempo en C y recepción de parametros en C bajo UNIX
+//Compilación: "gcc main.c tiempo.c
+//Ejecución: "./script.sh
+//*****************************************************************
+//*****************************************************************
+
+//*****************************************************************
+//LIBRERIAS INCLUIDAS
+//*****************************************************************
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "tiempo.h"
-
+//*****************************************************************
+//DEFINICION DE CONSTANTES DEL PROGRAMA
+//*****************************************************************
 #define MIN(a,b) (((a)<(b))?(a):(b))
+//********************************************************************************
+//DECLARACION DE ESTRUCTURAS
+//********************************************************************************
 
-int busquedaBinaria(int arr[], int l, int r, int x);
-int busquedaExponencial(int arr[], int n, int x);
+//*****************************************************************
+//DECLARACIÓN DE FUNCIONES
+//*****************************************************************
+int busquedaExponencial(int A[], int n, int x);
+//*****************************************************************
+//VARIABLES GLOBALES
+//*****************************************************************
 
-int main(int argc, char* argv[]) 
-{ 
-    int n, *p, i, result;
-    int datos[20] = {322486, 14700764, 3128036, 6337399, 61396,
-	10393545, 2147445644, 1295390003, 450057883, 187645041,
-	1980098116, 152503, 5000, 1493283650, 214826, 1843349527,
-	1360839354, 2109248666 , 2147470852, 0};
-
-    //******************************************************************	
+//*****************************************************************
+//PROGRAMA PRINCIPAL 
+//*****************************************************************
+int main (int argc, char* argv[])
+{	
+	//******************************************************************	
+	//Variables del main
+	//******************************************************************	
+	int n; 	//n determina el tamaño del algorito dado por argumento al ejecutar
+	int i,j,bandera=0; //Variables para loops
+	int *A;
+	int numeros[20]={322468,14700764,3128036,6337399,61396,10393545,2147445644,129539003,450057883,187645041,1980098116,152503,5000,1493283650,214826,1843349527,1360839354,2109248666,2147470852,0};
+	n=atoi(argv[1]);
+    float suma = 0, promedio = 0;
+	int encontrados;
+	//******************************************************************	
 	//Recepción y decodificación de argumentos
 	//******************************************************************	
-
-	//Si no se introducen exactamente 3 argumentos (Cadena de ejecución, cadena=n y número a buscar = m)
-	if (argc!=2) 
+	A=(int*)malloc(n*sizeof(int));
+	for(i=0;i<n;i++)
 	{
-		printf("\nIndique el número a buscar - Ejemplo: [user@equipo]$ %s 40000\n",argv[0]);
-		exit(1);
-	} 
-	//Tomar el segundo argumento como tamaño del algoritmo
-	else
-	{
-		n=atoi(argv[1]);
-		//m=atoi(argv[2]);
+		scanf("%d",&A[i]);
 	}
-
-    p=malloc(n*sizeof(int));
-    if(p==NULL) exit(1);
-
-    double utime0, stime0, wtime0,utime1, stime1, wtime1;
+    printf("Busqueda Exponencial n = %d\n", n);
+	printf("Num Buscado,Nums Arreglo,Encontrado,Real,CPU,E/S,CPU/Wall\n");
 	
-    uswtime(&utime0, &stime0, &wtime0);
-    for(i=0;i<n;i++)
+	//******************************************************************	
+	//Algoritmo
+	//******************************************************************	
+	for(i=0;i<20;i++)
 	{
-		scanf("%d",&p[i]);
+		double utime0, stime0, wtime0, utime1, stime1, wtime1; //Variables para medición de tiempos
+		uswtime(&utime0, &stime0, &wtime0); 
+		encontrados = busquedaExponencial(A, n - 1, numeros[i]);
+		//******************************************************************	
+	//Evaluar los tiempos de ejecución 
+	//******************************************************************
+	uswtime(&utime1, &stime1, &wtime1);
+	if(encontrados != -1)
+        printf("%d,%d,SI,%.15e,%.15e,%.15e,%.8f %%\n",numeros[i],n,wtime1-wtime0,utime1-utime0,stime1-stime0,100.0*(utime1-utime0+stime1-stime0));
+    else
+        printf("%d,%d,NO,%.15e,%.15e,%.15e,%.8f %%\n",numeros[i],n,wtime1-wtime0,utime1-utime0,stime1-stime0,100.0*(utime1-utime0+stime1-stime0));
+    
+	//Terminar programa normalmente
+	suma = suma + wtime1 - wtime0;
 	}
+    printf("\nPromedio Tiempo Total: %.20f s\n\n", suma/20);
+	//******************************************************************
+return 0;
+	
+}
 
-    for (i = 0; i < 20; i++)
-    {
-        result = busquedaExponencial(p, n - 1, datos[i]);
-        (result == -1) ? printf("Element is not present"
-                            " in array") 
-                   : printf("Element is present at "
-                            "index %d", 
-                            result); 
-    }
-    
-    uswtime(&utime1, &stime1, &wtime1);
-
-    
-
-    printf("\n");
-	printf("real (Tiempo total)  %.10f s\n",  wtime1 - wtime0);
-	printf("user (Tiempo de procesamiento en CPU's) %.10f s\n",  utime1 - utime0);
-	//printf("%d threads (Tiempo de procesamiento aproximado por cada thread en CPU) %.10f s\n", NumThreads,(utime1 - utime0)/NumThreads);	
-	printf("sys (Tiempo en acciónes de E/S)  %.3f s\n",  stime1 - stime0);
-	printf("CPU/Wall   %.10f %% \n",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0));
-	printf("\n");
-
-    free(p);
-    return 0; 
-} 
-
-/*int busquedaBinaria(int arr[], int l, int r, int x) 
-{ 
-    while (l <= r) { 
-        int m = l + (r - l) / 2; 
-  
-        // Check if x is present at mid 
-        if (arr[m] == x) 
-            return m; 
-  
-        // If x greater, ignore left half 
-        if (arr[m] < x) 
-            l = m + 1; 
-  
-        // If x is smaller, ignore right half 
-        else
-            r = m - 1; 
-    } 
-  
-    // if we reach here, then element was 
-    // not present 
-    return -1; 
-} */
-int busquedaExponencial(int arr[], int n, int x)
+//************************************************************************
+//Busqueda exponencial, busca el valor de x en el arreglo
+//Esta función recibe un arreglo de enteros, un numero a buscar y el tamaño del arreglo
+//Devuelve -1 si no se encontro el numero.
+//************************************************************************
+int busquedaExponencial(int A[], int n, int x)
 {
-    // If x is present at firt location itself
-    if (arr[0] == x)
+    // SI esta presente en la primera posicion
+    if (A[0] == x)
         return 0;
  
-    // Find range for binary search by
-    // repeated doubling
+    //Encuentra el rango para la busqueda binaria duplicando repetidamente
     int i = 1;
-    while (i < n && arr[i] <= x)
+    while (i < n && A[i] <= x)
         i = i*2;
     int l = i/2, r = MIN(i, n);
     while (l <= r) { 
         int m = l + (r - l) / 2; 
   
-        // Check if x is present at mid 
-        if (arr[m] == x) 
+        // Checa si x esta presente en medio
+        if (A[m] == x) 
             return m; 
   
-        // If x greater, ignore left half 
-        if (arr[m] < x) 
+        // SI X ES MAYOR, ignora la mitad de la izquierda
+        if (A[m] < x) 
             l = m + 1; 
   
-        // If x is smaller, ignore right half 
+        // Si x es menor ignora la mitad de la derecha
         else
             r = m - 1; 
     }
     return -1;
-    //  Call binary search for the found range.
-    //return busquedaBinaria(arr, i/2, MIN(i, n), x);
+
 }
+
