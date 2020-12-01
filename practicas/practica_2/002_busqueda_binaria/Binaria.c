@@ -64,7 +64,8 @@ int main(int argc, char *argv[])
 	//Con este for vamos agregando los n valores del txt al arreglo
 	for(i = 0; i < n; i++)
 		fscanf(stdin, "%d", &arreglo[i]);
-	printf("\nBusqueda Binaria n = %d", n);
+	printf("Busqueda Binaria n = %d\n", n);
+	printf("Num Buscado,Nums Arreglo,Encontrado,Real,CPU,E/S,CPU/Wall\n");
 	//Con este for vamos buscando cada numero en el arreglo
 	for(j = 0; j < 20; j++)
 	{
@@ -74,7 +75,7 @@ int main(int argc, char *argv[])
 		int s = Binaria(arreglo, n, datos[j]);
 
 		uswtime(&utime1, &stime1, &wtime1);
-
+		/*
 		if(j == 17)// para 2109248666
 		{
 			if(s != -1)
@@ -90,11 +91,16 @@ int main(int argc, char *argv[])
 			printf("CPU/Wall %.8f %% ",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0)); //CPU Wall
 			printf("\n");
 		}
+		*/
+		if(s != -1)
+			printf("%d,%d,SI,%.15e,%.15e,%.15e,%.8f %%\n",datos[j],n,wtime1-wtime0,utime1-utime0,stime1-stime0,100.0*(utime1-utime0+stime1-stime0));
+		else
+			printf("%d,%d,NO,%.15e,%.15e,%.15e,%.8f %%\n",datos[j],n,wtime1-wtime0,utime1-utime0,stime1-stime0,100.0*(utime1-utime0+stime1-stime0));
+			
 		suma = suma + wtime1 - wtime0;
 	}
 	printf("\nPromedio Tiempo Total: %.20f s\n\n", suma/20);
 	
-	printf("------------------------------------\n");
 	exit(0);
 }
 

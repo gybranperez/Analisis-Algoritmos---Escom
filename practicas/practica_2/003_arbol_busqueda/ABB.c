@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
 	1980098116, 152503, 5000, 1493283650, 214826, 1843349527,
 	1360839354, 2109248666 , 2147470852, 0};
 
-	printf("Arbol de Busqueda Binaria n = %d\n", n);
+	
 	//Con este for vamos agregando los n valores del txt al arreglo
 	for(k = 0; k < n; k++)
 	{
@@ -113,6 +113,9 @@ int main(int argc, char *argv[])
 	/*
 		BUSCA EN EL ARBOL CADA NUMERO DEL ARREGLO DATOS
 	*/
+	printf("\nArbol de Busqueda Binaria n = %d\n", n);
+	printf("Num Buscado,Nums Arreglo,Encontrado,Real,CPU,E/S,CPU/Wall\n");
+	
 	for(j = 0; j < 20; j++)
 	{
 		double utime0, stime0, wtime0,utime1, stime1, wtime1; //Variables para medición de tiempos
@@ -122,7 +125,7 @@ int main(int argc, char *argv[])
 		// La funcion recibe el arbol, numero de datos y el dato
 
 		uswtime(&utime1, &stime1, &wtime1);
-
+		/*
 		if(j == 17)// para 2109248666
 		{
 			if(s != -1)
@@ -138,6 +141,12 @@ int main(int argc, char *argv[])
 			printf("CPU/Wall %.8f %% ",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0)); //CPU Wall
 			printf("\n");
 		}
+		*/
+		if(s != -1)
+			printf("%d,%d,SI,%.15e,%.15e,%.15e,%.8f %%\n",datos[j],n,wtime1-wtime0,utime1-utime0,stime1-stime0,100.0*(utime1-utime0+stime1-stime0));
+		else
+			printf("%d,%d,NO,%.15e,%.15e,%.15e,%.8f %%\n",datos[j],n,wtime1-wtime0,utime1-utime0,stime1-stime0,100.0*(utime1-utime0+stime1-stime0));
+			
 		suma = suma + wtime1 - wtime0;
 	}
 
@@ -145,7 +154,6 @@ int main(int argc, char *argv[])
 
 	printf("\nPromedio Tiempo Total: %.20f s\n\n", suma/20);
 	
-	printf("------------------------------------\n");
 
 	return 0;
 }

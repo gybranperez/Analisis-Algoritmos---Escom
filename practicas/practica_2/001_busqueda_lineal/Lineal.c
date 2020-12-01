@@ -53,7 +53,8 @@ int main(int argc, char *argv[])
 	//Agregamos los n valores del txt al arreglo
 	for(i = 0; i < n; i++)
 		fscanf(stdin, "%d", &arreglo[i]);
-	printf("\nBusqueda Lineal n = %d", n);
+	printf("Busqueda Lineal n = %d\n", n);
+	printf("Num Buscado,Nums Arreglo,Encontrado,Real,CPU,E/S,CPU/Wall\n");
 	//Buscamos los valores solicitados en la lista de 10 millones
 	for(j = 0; j < 20; j++)
 	{
@@ -63,25 +64,31 @@ int main(int argc, char *argv[])
 		int s = Lineal(arreglo, n, datos[j]);
 
 		uswtime(&utime1, &stime1, &wtime1);
-
-		if(j == 17)// para 2109248666
-		{
-			if(s != -1)
+		
+		//if(j == 17)// para 2109248666
+		//{
+			/*if(s != -1)
 				printf("\n\n%d SI : %d ", datos[j], s);
 			else
 				printf("\n\n%d NO : --- ", datos[j]);
-
+			*/
 			//Cálculo del tiempo de ejecución del programa
+			/*
 			printf("\n");
 			printf("Total %.15e \n",  wtime1 - wtime0); //Tiempo Real
 			printf("CPU %.15e \n",  utime1 - utime0); //Tiempo CPU
 			printf("E/S %.15e \n",  stime1 - stime0); //Tiempo E/S
 			printf("CPU/Wall %.8f %% ",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0)); //CPU Wall
 			printf("\n");
-		}
+			*/
+			if(s != -1)
+				printf("%d,%d,SI,%.15e,%.15e,%.15e,%.8f %%\n",datos[j],n,wtime1-wtime0,utime1-utime0,stime1-stime0,100.0*(utime1-utime0+stime1-stime0));
+			else
+				printf("%d,%d,NO,%.15e,%.15e,%.15e,%.8f %%\n",datos[j],n,wtime1-wtime0,utime1-utime0,stime1-stime0,100.0*(utime1-utime0+stime1-stime0));
+			
+		//}
 		suma = suma + wtime1 - wtime0;
 	}
 	printf("\nPromedio Tiempo Total: %.20f s\n\n", suma/20);
-	
-	printf("------------------------------------\n");
+	return 0;	
 }
