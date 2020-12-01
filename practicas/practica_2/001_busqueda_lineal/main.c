@@ -1,11 +1,15 @@
 //*****************************************************************
+/*Elaborado por:
+	Pérez Juarez Carlos Gybran
+	Pérez Sereno Ricardo Erick
+	Ramirez Flores Juan
+*/
 //M. EN C. EDGARDO ADRIÁN FRANCO MARTÍNEZ 
 //Curso: Análisis de algoritmos
-//(C) Enero 2013
 //ESCOM-IPN
 //Ejemplo de medición de tiempo en C y recepción de parametros en C bajo UNIX
-//Compilación: "gcc main.c tiempo.x  -o main(teimpo.c si se tiene la implementación de la libreria o tiempo.o si solo se tiene el codigo objeto)"
-//Ejecución: "./main n" (Linux y MAC OS)
+//Compilación: "gcc main.c tiempo.c
+//Ejecución: "./script.sh
 //*****************************************************************
 
 //*****************************************************************
@@ -26,6 +30,7 @@
 //*****************************************************************
 //DECLARACIÓN DE FUNCIONES
 //*****************************************************************
+int BusquedaLineal(int A[],int numeros,int n);
 //*****************************************************************
 //VARIABLES GLOBALES
 //*****************************************************************
@@ -38,9 +43,8 @@ int main (int argc, char* argv[])
 	//******************************************************************	
 	//Variables del main
 	//******************************************************************	
-		double utime0, stime0, wtime0, utime1, stime1, wtime1; //Variables para medición de tiempos
 	int n; 	//n determina el tamaño del algorito dado por argumento al ejecutar
-	int i,j,bandera=0; //Variables para loops
+	int i,j,encontrados;//Variables para loops
 	int *A;
 	int numeros[20]={322468,14700764,3128036,6337399,61396,10393545,2147445644,129539003,450057883,187645041,1980098116,152503,5000,1493283650,214826,1843349527,1360839354,2109248666,2147470852,0};
 	n=atoi(argv[1]);
@@ -57,20 +61,20 @@ int main (int argc, char* argv[])
 	//******************************************************************	
 	for(i=0;i<20;i++)
 	{
-		bandera=0;
-
+		
+		double utime0, stime0, wtime0, utime1, stime1, wtime1; //Variables para medición de tiempos
 		uswtime(&utime0, &stime0, &wtime0); 
-			for(j=0;j<n;j++)
-			{
-				if(A[j]==numeros[i]){
-					printf("Se encontro el numero %d, en la posición %d\n",numeros[i],j);
-					bandera = 1;
-				}			
-			}
-			if(bandera == 0){
-					printf("No se encontro el numero %d\n",numeros[i]);
-				}
-			//******************************************************************	
+	encontrados=BusquedaLineal(A,numeros[i],n);
+	if(encontrados != -1)
+	{
+		printf("Se encontro el numero %d" ,numeros[i]);
+	}
+	else
+	{
+		printf("No se encontro el numero %d\n",numeros[i]);
+	}
+
+	//******************************************************************	
 	//Evaluar los tiempos de ejecución 
 	//******************************************************************
 	uswtime(&utime1, &stime1, &wtime1);
@@ -100,6 +104,20 @@ return 0;
 }
 
 //************************************************************************
-//DEFINICIÓN DE FUNCIONES 
+//recibe un arreglo de numeros, un arreglo con los numeros a buscar y el tamaño del arreglo
+//devuelve -1 si no se encontro el numero.
 //************************************************************************
 
+int BusquedaLineal(int A[],int numeros,int n)
+{
+	int posicion = 0;
+		while(posicion <= n)
+		{
+			if(numeros == A[posicion])
+			{
+				return posicion;
+			}
+				posicion++;
+		}
+	return -1;
+}
