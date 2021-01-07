@@ -12,3 +12,5 @@ n10m.txt
 ordenados.txt
 desordenados.txt
 10mOrdenados.txt
+node_modules
+node_modules/*
