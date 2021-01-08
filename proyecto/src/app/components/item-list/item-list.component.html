@@ -1,0 +1,30 @@
+<div>
+    <h1>Administración de artículos</h1>
+      <table border="1" *ngIf="hayRegistros(); else sinarticulos">
+        <tr>
+          <td>Inicio</td><td>Fin</td><td>Borrar</td><td>Seleccionar</td>
+        </tr>
+        <tr *ngFor="let art of actividades">
+            <td>{{art.id}}</td>
+          <td>{{art.inicio}}</td>
+          <td>{{art.fin}}</td>
+          <td><button (click)="borrar(art)">Borrar</button></td>
+          <td><button (click)="seleccionar(art)">Seleccionar</button></td>        
+        </tr>
+      </table>
+      <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
+      <div>
+        
+        <p *ngIf="0 <= art.id">
+            Id:{{art.id}}
+          </p>
+        <p>
+          Inicio:<input type="text" [(ngModel)]="art.inicio" />
+        </p>
+        <p>
+          Fin:<input type="number" [(ngModel)]="art.fin" />
+        </p>            
+        <p><button (click)="agregar()">Agregar</button>
+        <button (click)="modificar()">Modificar</button></p>
+      </div>
+  </div>
