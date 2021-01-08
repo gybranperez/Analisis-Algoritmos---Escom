@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Tarjeta } from 'src/app/interfaces/tarjeta';
 import { Item } from 'src/app/models/item';
 
 @Component({
@@ -6,6 +7,8 @@ import { Item } from 'src/app/models/item';
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.css']
 })
+
+
 export class ItemListComponent implements OnInit {
 
 
@@ -19,7 +22,15 @@ export class ItemListComponent implements OnInit {
                   new Item(0,0,3),
                 new Item(1,1,6),
                 new Item(2,4,6));
+  
   num:number = this.actividades.length;
+
+  tiles: Tarjeta[] = [
+    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
+    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
+    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
+    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
+  ];
   hayRegistros() {
     return this.actividades.length>0;              
   }
@@ -34,6 +45,7 @@ export class ItemListComponent implements OnInit {
     for(let x=0;x<this.actividades.length;x++){
       this.actividades[x].id=x;
     }
+    console.log(this.actividades);
   }
 
   agregar() {
