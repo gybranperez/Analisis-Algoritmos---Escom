@@ -2,6 +2,7 @@
     <h1>Administración de artículos</h1>
       <table *ngIf="hayRegistros(); else sinarticulos">
         <thead>
+          <th>  ID</th>
           <th>  Inicio</th>
           <th>  Fin</th>
           <th>Borrar</th>
@@ -9,7 +10,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let art of actividades">
-              <td>{{art.id}}</td>
+            <td>{{art.id}}</td>
             <td>{{art.inicio}}</td>
             <td>{{art.fin}}</td>
             <td><button (click)="borrar(art)">Borrar</button></td>
@@ -24,14 +25,24 @@
             Id:{{art.id}}
           </p>
         <p>
-          Inicio:<input matInput type="text" [(ngModel)]="art.inicio">
+          Inicio:<input matInput type="number" [(ngModel)]="art.inicio">
         </p>
         <p>
           Fin:<input type="number" [(ngModel)]="art.fin" />
         </p>            
-        <p><button (click)="agregar()">Agregar</button>
-        <button (click)="modificar()">Modificar</button></p>
+        <p>
+          <button (click)="agregar()">Agregar</button>
+          <button (click)="modificar()">Modificar</button>
+          <button (click)="encontrarActividades()">Obtener Optima</button>
+        </p>
       </div>
+  </div>
+  <div>
+    <ol>
+      <li *ngFor="let it of optima">
+        {{it.inicio}} - {{it.fin}}
+      </li>
+    </ol>
   </div>
     
  

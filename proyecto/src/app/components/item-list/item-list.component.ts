@@ -19,18 +19,22 @@ export class ItemListComponent implements OnInit {
   
   art:Item = new Item(-1,0,0);
   actividades = new Array<Item>(
-                  new Item(0,0,3),
-                new Item(1,1,6),
-                new Item(2,4,6));
-  
-  num:number = this.actividades.length;
-
-  tiles: Tarjeta[] = [
-    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
-  ];
+                  new Item(0,1,4),
+                new Item(1,3,5),
+                new Item(2,0,6),
+                new Item(3,5,7),
+                new Item(4,3,8),
+                new Item(3,5,9),
+                new Item(5,6,10),
+                new Item(6,8,11),
+                new Item(7,8,12),
+                new Item(8,2,13),
+                new Item(9,12,14)
+  );
+  /*
+    {1, 4}, {3, 5}, {0, 6}, {5, 7}, {3, 8}, {5, 9}, {6, 10}, {8, 11}, {8, 12}, {2, 13}, {12, 14}
+  */
+  optima:Item[]=[];
   hayRegistros() {
     return this.actividades.length>0;              
   }
@@ -42,23 +46,16 @@ export class ItemListComponent implements OnInit {
         this.actividades.splice(x,1);
         return;
       }
-    for(let x=0;x<this.actividades.length;x++){
-      this.actividades[x].id=x;
-    }
-    console.log(this.actividades);
+    this.ordenarLista();
+    console.log("Despues de borrar: " + this.actividades);
   }
 
   agregar() {
-    /*for(let x=0;x<this.actividades.length;x++)
-    if (this.actividades[x].id==this.art.id)
-    {
-      alert('ya existe un articulo con dicho codigo');
-      return;
-    }*/
     this.actividades.push(new Item(this.actividades.length,this.art.inicio,this.art.fin));
     this.art.id=-1;
     this.art.inicio=0;
     this.art.fin=0;    
+    this.ordenarLista();
   }
 
   seleccionar(art:any) {
@@ -76,5 +73,50 @@ export class ItemListComponent implements OnInit {
         return;
       }        
     alert('No existe el código de articulo ingresado');
+  }
+ encontrarActividades(){
+  let opciones:Item[][]=[];
+  for(let y=0;y<this.actividades.length;y++){
+      opciones.push([]);
+  }
+  this.ordenarLista();
+  for(let x=0;x<this.actividades.length;x++){
+    for(let j=0;j<x;j++){
+        let start = this.actividades[x].inicio;
+        let finish = this.actividades[j].fin;
+      if(finish<start && (this.actividades[x].inicio - this.actividades[j].fin)){
+          opciones[x] = opciones[j];
+      }
+    }
+     opciones[x].push(this.actividades[x]);
+  }
+  let max:Item[] = [];
+  for(let x=0;x<opciones.length;x++){
+    if(max.length < opciones[x].length){
+      max = opciones[x];
+    }
+  }
+  console.log(max);
+  this.optima=max;
+ }
+ duracionActividad(art:Item){
+  return art.fin - art.inicio;
+ }
+  ordenarLista(){
+    for(let x=0;x<this.actividades.length;x++){
+      for(let j=0;j<x;j++){
+          let start1 = this.actividades[x].inicio;
+          let start2 = this.actividades[j].inicio;
+          let duracion = this.duracionActividad(this.actividades[j]) < this.duracionActividad(this.actividades[x]);
+        if(start2<=start1 && duracion){
+          let aux = this.actividades[x];
+          this.actividades[x] = this.actividades[j];
+          this.actividades[j] = aux;
+        }
+      }
+    }
+    for(let x=0;x<this.actividades.length;x++){
+      this.actividades[x].id=x;
+    }
   }
 }
