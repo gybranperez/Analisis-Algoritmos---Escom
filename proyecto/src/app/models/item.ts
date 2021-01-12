@@ -8,4 +8,7 @@ export class Item {
         this.inicio = inicio;
         this.fin = fin;
       }
+      public toString = () : string => {
+        return `${this.inicio}, ${this.fin}\n`;
+    }
 }

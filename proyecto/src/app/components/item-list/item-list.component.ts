@@ -18,6 +18,7 @@ export class ItemListComponent implements OnInit {
   }
   
   art:Item = new Item(-1,0,0);
+  /*
   actividades = new Array<Item>(
                   new Item(0,1,4),
                 new Item(1,3,5),
@@ -31,9 +32,18 @@ export class ItemListComponent implements OnInit {
                 new Item(8,2,13),
                 new Item(9,12,14)
   );
-  /*
+  
+  
     {1, 4}, {3, 5}, {0, 6}, {5, 7}, {3, 8}, {5, 9}, {6, 10}, {8, 11}, {8, 12}, {2, 13}, {12, 14}
+    {1,2},{3,4},{5,6},{2,5},{3.5}
   */
+ actividades = new Array<Item>(
+  new Item(0,1,2),
+  new Item(1,3,4),
+  new Item(2,5,6),
+  new Item(3,2,5),
+  new Item(4,3,5)
+);
   optima:Item[]=[];
   hayRegistros() {
     return this.actividades.length>0;              
@@ -80,43 +90,37 @@ export class ItemListComponent implements OnInit {
       opciones.push([]);
   }
   this.ordenarLista();
-  for(let x=0;x<this.actividades.length;x++){
-    for(let j=0;j<x;j++){
-        let start = this.actividades[x].inicio;
-        let finish = this.actividades[j].fin;
-      if(finish<start && (this.actividades[x].inicio - this.actividades[j].fin)){
-          opciones[x] = opciones[j];
+    for(let x=0;x<this.actividades.length;x++){
+      for(let j=0;j<x;j++){
+          let start = this.actividades[x].inicio;
+          let finish = this.actividades[j].fin;
+        if((finish<start) && (opciones[x].length < opciones[j].length)){
+            opciones[x] = opciones[j];
+        }
+      }
+       opciones[x].push(this.actividades[x]);
+    }
+    let max:Item[] = [];
+    for(let x=0;x<opciones.length;x++){
+      if(max.length < opciones[x].length){
+        max = opciones[x];
       }
     }
-     opciones[x].push(this.actividades[x]);
-  }
-  let max:Item[] = [];
-  for(let x=0;x<opciones.length;x++){
-    if(max.length < opciones[x].length){
-      max = opciones[x];
-    }
-  }
-  console.log(max);
-  this.optima=max;
+    console.log(max);
+    this.optima=max; 
  }
  duracionActividad(art:Item){
   return art.fin - art.inicio;
  }
   ordenarLista(){
-    for(let x=0;x<this.actividades.length;x++){
-      for(let j=0;j<x;j++){
-          let start1 = this.actividades[x].inicio;
-          let start2 = this.actividades[j].inicio;
-          let duracion = this.duracionActividad(this.actividades[j]) < this.duracionActividad(this.actividades[x]);
-        if(start2<=start1 && duracion){
-          let aux = this.actividades[x];
-          this.actividades[x] = this.actividades[j];
-          this.actividades[j] = aux;
-        }
-      }
-    }
+    this.actividades.sort((left, right) => {
+      if (left.inicio < right.inicio) return -1;
+      if (left.inicio > right.inicio) return 1;
+      return 0;
+    })
     for(let x=0;x<this.actividades.length;x++){
       this.actividades[x].id=x;
     }
   }
+  
 }
