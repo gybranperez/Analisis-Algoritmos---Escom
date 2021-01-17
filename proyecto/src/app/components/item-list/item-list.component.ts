@@ -84,7 +84,22 @@ export class ItemListComponent implements OnInit {
       }        
     alert('No existe el código de articulo ingresado');
   }
- encontrarActividades(){
+  range(start:number,end:number) {
+    let ar:number[]=new Array();
+    for (let index = start+1; index < end; index++) 
+      ar.push(index);
+    return ar;
+  }
+  contains(rango1:any,rango2:any){
+    alert(rango1+"\n"+rango2);
+    for(let e in rango1){
+      if (rango2.includes(rango1[e])) {
+        return true;
+     }
+    }
+    return false;
+  }
+ encontrarActividades2(){
   let opciones:Item[][]=[];
   for(let y=0;y<this.actividades.length;y++){
       opciones.push([]);
@@ -92,9 +107,11 @@ export class ItemListComponent implements OnInit {
   this.ordenarLista();
     for(let x=0;x<this.actividades.length;x++){
       for(let j=0;j<x;j++){
-          let start = this.actividades[x].inicio;
-          let finish = this.actividades[j].fin;
-        if((finish<start) && (opciones[x].length < opciones[j].length)){
+        let start = this.actividades[x].inicio;
+        let finish = this.actividades[j].fin;
+        let rango1 = this.range(this.actividades[x].inicio, this.actividades[x].fin);
+        let rango2 = this.range(this.actividades[j].inicio, this.actividades[j].fin);  
+        if((finish<start) && (opciones[x].length < opciones[j].length) && this.contains(rango1,rango2)){
             opciones[x] = opciones[j];
         }
       }
@@ -106,8 +123,23 @@ export class ItemListComponent implements OnInit {
         max = opciones[x];
       }
     }
-    console.log(max);
+    let t="";
+    for(let op in opciones){
+      t+=opciones[op]+"\n";
+    }
     this.optima=max; 
+ }
+ encontrarActividades(){
+  let opciones = new Array(this.actividades.length-1);
+  this.ordenarLista();
+  for (let p = this.actividades.length-2; p >= 0; p--){
+    let q = p+1;
+    while (q<this.actividades.length && this.actividades[q].inicio<this.actividades[p].fin) {
+      q++;
+    }
+    opciones[p]=1;
+    
+  }
  }
  duracionActividad(art:Item){
   return art.fin - art.inicio;
