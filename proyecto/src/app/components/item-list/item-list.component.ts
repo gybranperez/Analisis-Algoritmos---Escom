@@ -18,7 +18,7 @@ export class ItemListComponent implements OnInit {
   }
   
   art:Item = new Item(-1,0,0);
-  /*
+  
   actividades = new Array<Item>(
                   new Item(0,1,4),
                 new Item(1,3,5),
@@ -33,18 +33,20 @@ export class ItemListComponent implements OnInit {
                 new Item(9,12,14)
   );
   
-  
+  /*
     {1, 4}, {3, 5}, {0, 6}, {5, 7}, {3, 8}, {5, 9}, {6, 10}, {8, 11}, {8, 12}, {2, 13}, {12, 14}
     {1,2},{3,4},{5,6},{2,5},{3.5}
-  */
+  
  actividades = new Array<Item>(
   new Item(0,1,2),
-  new Item(1,3,4),
-  new Item(2,5,6),
-  new Item(3,2,5),
-  new Item(4,3,5)
-);
+  new Item(4,3,7),
+  new Item(1,2,5),
+  new Item(2,4,5),
+  new Item(3,2,4)
+  
+);*/
   optima:Item[]=[];
+  log="";
   hayRegistros() {
     return this.actividades.length>0;              
   }
@@ -99,55 +101,48 @@ export class ItemListComponent implements OnInit {
     }
     return false;
   }
- encontrarActividades2(){
-  let opciones:Item[][]=[];
-  for(let y=0;y<this.actividades.length;y++){
-      opciones.push([]);
-  }
-  this.ordenarLista();
-    for(let x=0;x<this.actividades.length;x++){
-      for(let j=0;j<x;j++){
-        let start = this.actividades[x].inicio;
-        let finish = this.actividades[j].fin;
-        let rango1 = this.range(this.actividades[x].inicio, this.actividades[x].fin);
-        let rango2 = this.range(this.actividades[j].inicio, this.actividades[j].fin);  
-        if((finish<start) && (opciones[x].length < opciones[j].length) && this.contains(rango1,rango2)){
-            opciones[x] = opciones[j];
-        }
-      }
-       opciones[x].push(this.actividades[x]);
-    }
-    let max:Item[] = [];
-    for(let x=0;x<opciones.length;x++){
-      if(max.length < opciones[x].length){
-        max = opciones[x];
-      }
-    }
-    let t="";
-    for(let op in opciones){
-      t+=opciones[op]+"\n";
-    }
-    this.optima=max; 
- }
  encontrarActividades(){
-  let opciones = new Array(this.actividades.length-1);
-  this.ordenarLista();
-  for (let p = this.actividades.length-2; p >= 0; p--){
-    let q = p+1;
-    while (q<this.actividades.length && this.actividades[q].inicio<this.actividades[p].fin) {
-      q++;
-    }
-    opciones[p]=1;
-    
+  let opciones:Item[] =[];
+  for (let i = 0; i <= this.actividades.length+1; i++){
+    opciones.push(new Item(0,0,0));
   }
+  this.ordenarLista();
+  for (let i = 1; i <= this.actividades.length; i++){
+    opciones[i].inicio = 1;
+    opciones[i].fin = i;
+    let  temp = 0;
+    for (let j = 1; j < i; j++){
+      if(this.actividades[j-1].fin <= this.actividades[i-1].inicio){
+        if (opciones[j].inicio + 1 > opciones[i].inicio) {
+          opciones[i].inicio = opciones[j].inicio + 1;
+          opciones[i].fin = j;
+        }
+        opciones[i].inicio = (opciones[i].inicio > 1 + opciones[j].inicio) ? opciones[i].inicio : 1 + opciones[j].inicio;
+      }
+    }
+  }
+  let max = 0;
+  let pos = -1;
+  for (let i = 1; i <= this.actividades.length; i++){
+    if (opciones[i].inicio > max) {
+        pos = i;
+        max = opciones[i].inicio;
+    }
+  }
+  this.optima = [];
+  while(opciones[pos].inicio != 1){
+    this.optima.push(this.actividades[pos-1]);
+    pos = opciones[pos].fin;
+  }
+  this.optima.push(this.actividades[pos-1]);
  }
  duracionActividad(art:Item){
   return art.fin - art.inicio;
  }
   ordenarLista(){
     this.actividades.sort((left, right) => {
-      if (left.inicio < right.inicio) return -1;
       if (left.inicio > right.inicio) return 1;
+      if ((left.inicio == right.inicio) && (right.fin-right.inicio < left.fin-left.inicio)) return 1;
       return 0;
     })
     for(let x=0;x<this.actividades.length;x++){

@@ -20,10 +20,11 @@
       </table>
       <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
       <div>
-        
-        <p *ngIf="0 <= art.id">
-            Id:{{art.id}}
+        <section *ngIf="art.id">
+          <p *ngIf="0 <= art.id">
+              Id:{{art.id}}
           </p>
+        </section>
         <p>
           Inicio:<input matInput type="number" [(ngModel)]="art.inicio">
         </p>
@@ -33,7 +34,7 @@
         <p>
           <button (click)="agregar()">Agregar</button>
           <button (click)="modificar()">Modificar</button>
-          <button (click)="encontrarActividades2()">Obtener Optima</button>
+          <button (click)="encontrarActividades()">Obtener Optima</button>
         </p>
       </div>
   </div>
@@ -43,6 +44,11 @@
         {{it.inicio}} - {{it.fin}}
       </li>
     </ol>
+  </div>
+  <div>
+    <p>
+      {{log}}
+    </p>
   </div>
     
  

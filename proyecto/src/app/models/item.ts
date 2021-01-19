@@ -1,5 +1,5 @@
 export class Item {
-    public id : number;
+    public id ?: number;
     public inicio : number;
     public fin : number;
 
