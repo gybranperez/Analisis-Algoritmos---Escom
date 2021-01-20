@@ -1,63 +1,100 @@
-<div>
-  <div>
-    <h1>Problema de selección de actividades</h1>
-      <table class="table table-striped table-hover" *ngIf="hayRegistros(); else sinarticulos">
-        <thead>
-          <th scope="col">  ID</th>
-          <th scope="col">  Inicio</th>
-          <th scope="col">  Fin</th>
-          <th scope="col">Borrar</th>
-          <th scope="col"> Seleccionar</th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let art of actividades">
-            <td scope="row">{{art.id}}</td>
-            <td>{{art.inicio}}</td>
-            <td>{{art.fin}}</td>
-            <td><button type="button" class="btn btn-danger" (click)="borrar(art)">Borrar</button></td>
-            <td><button type="button" class="btn btn-warning" (click)="seleccionar(art)">Seleccionar</button></td>        
-          </tr>
-      </tbody>
-      </table>
-      <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
-      <div>
-        <section *ngIf="art.id">
-          <p *ngIf="0 <= art.id">
-              Id:{{art.id}}
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Problema de selección de actividades</span>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <div id="registroActividades" class="col-12 col-md-4">
+        <table class="table table-striped table-hover" *ngIf="hayRegistros(); else sinarticulos">
+          <thead>
+            <th scope="col">  ID</th>
+            <th scope="col">  Inicio</th>
+            <th scope="col">  Fin</th>
+            <th scope="col">Borrar</th>
+            <th scope="col"> Seleccionar</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let art of actividades">
+              <td scope="row">{{art.id}}</td>
+              <td>{{art.inicio}}</td>
+              <td>{{art.fin}}</td>
+              <td>
+                <button class="btn btn-danger" (click)="borrar(art)">Borrar</button>
+              </td>
+              <td>
+                <button class="btn btn-warning" (click)="seleccionar(art)">Seleccionar</button>
+              </td>        
+            </tr>
+        </tbody>
+        </table>
+        <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
+        
+    </div>
+    <div class="col-12 col-md-8">
+      <div class="row">
+        <div class="col-12 bg-warning">
+          <section *ngIf="art.id">
+            <p *ngIf="0 <= art.id">
+                Id:{{art.id}}
+            </p>
+          </section>
+          <div class="row">
+            <div class="col-6">
+              <label for="Inicio" class="form-label">Inicio:</label>
+              <input id="Inicio" class="form-control" matInput type="number" [(ngModel)]="art.inicio"  min="1" step="1" onkeyup="if(this.value<0){this.value= this.value * -1}">
+            </div>
+            <div class="col-6">
+              <label for="Fin" class="form-label">Fin:</label>
+              <input id="Fin" class="form-control" type="number" [(ngModel)]="art.fin"  min="2" step="1" onkeyup="if(this.value<0){this.value= this.value * -1}"/>
+            </div>
+          </div>      
+          <p>
+            <button type="button" class="btn btn-success" (click)="agregar()">Agregar</button>
+            <button type="button" class="btn btn-primary" (click)="modificar()">Modificar</button>
+            <button type="button" class="btn btn-secondary" (click)="encontrarActividades()">Obtener Optima</button>
           </p>
-        </section>
-        <p>
-          Inicio:<input matInput type="number" [(ngModel)]="art.inicio"  min="1" step="1" onkeyup="if(this.value<0){this.value= this.value * -1}">
-        </p>
-        <p>
-          Fin:<input type="number" [(ngModel)]="art.fin"  min="2" step="1" onkeyup="if(this.value<0){this.value= this.value * -1}"/>
-        </p>            
-        <p>
-          <button type="button" class="btn btn-success" (click)="agregar()">Agregar</button>
-          <button type="button" class="btn btn-primary" (click)="modificar()">Modificar</button>
-          <button type="button" class="btn btn-secondary" (click)="encontrarActividades()">Obtener Optima</button>
-        </p>
+        </div>
       </div>
-  </div>
-  <div>
-    <p>
-      LOOOG: {{log}}
-    </p>
-  </div>
-  <section class="tabla-actividades">
-    <div  class="index-tabla"
-          *ngFor="let art of actividades; let i = index" 
-          [attr.data-index]="i">
-          {{i}}
+      <div class="row pt-4 pl-4">
+        <section class="indice-actividades bg-primary d-flex justify-content-between">
+          <div  class="index-tabla"
+                *ngFor="let art of obtenerArreglo(); let i = index" 
+                [attr.data-index]="i">
+                {{i+1}}
+          </div>
+        </section>
+        <section class="tabla-actividades col-12" *ngIf="show">
+          <div  class="item-tabla" [style.margin-left]=calcularMargen(art) [style.width]=calcularAncho(art)
+                *ngFor="let art of actividades; let i = index" 
+                [attr.data-index]="i">
+              {{art.inicio}} - {{art.fin}} 
+          </div>
+        </section>
+        <section class="indice-actividades bg-primary d-flex justify-content-between">
+          <div  class="index-tabla"
+                *ngFor="let art of obtenerArreglo(); let i = index" 
+                [attr.data-index]="i">
+                {{i+1}}
+          </div>
+        </section>
+          <div class="col-12">
+            <h1>
+              Rango: {{log}}
+            </h1>
+          </div>
+          <div class="col-12">
+            <h1>
+              Solucion optima: 
+            </h1>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-primary" *ngFor="let art of optima; let i = index">{{art}}</button>
+            </div>
+        </div>
+      </div>
     </div>
-  </section>
-  <section class="tabla-actividades">
-    <div  class="item-tabla" [style.margin-left]=calcularMargen(art) [style.width]=calcularAncho(art)
-          *ngFor="let art of actividades; let i = index" 
-          [attr.data-index]="i">
-        {{art.inicio}} - {{art.fin}} 
-    </div>
-</section>
+  </div>
+
 </div>
   
     

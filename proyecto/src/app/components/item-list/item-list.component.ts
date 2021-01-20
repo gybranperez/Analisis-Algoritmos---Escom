@@ -44,9 +44,13 @@ export class ItemListComponent implements OnInit {
   new Item(3,2,4)
   
 );*/
+  show:boolean=false;
   optima:Item[]=[];
   log="";
-  rango={inicio:1,fin:1};
+  rango={
+    inicio:1,
+    fin:1
+  };
   porcentajeAncho:number=0;
   hayRegistros() {
     return this.actividades.length>0;              
@@ -106,19 +110,17 @@ export class ItemListComponent implements OnInit {
     }
     this.rango=rango;
     this.log = "Rango : " + rango.inicio + " a " + rango.fin;
-    this.porcentajeAncho= 80/rango.fin;
+    this.porcentajeAncho= 100/rango.fin;
   }
-  contains(rango1:any,rango2:any){
-    alert(rango1+"\n"+rango2);
-    for(let e in rango1){
-      if (rango2.includes(rango1[e])) {
-        return true;
-     }
+  obtenerArreglo(){
+    let a:number[] = [];
+    for(let i=1;i<=this.rango.fin;i++){
+      a.push(i);
     }
-    return false;
+    return a;
   }
  encontrarActividades(){
-  
+  this.show=true;
   let opciones:Item[] =[];
   for (let i = 0; i <= this.actividades.length+1; i++){
     opciones.push(new Item(0,0,0));
