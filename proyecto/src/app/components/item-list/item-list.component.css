@@ -1,0 +1,13 @@
+.tabla-actividades{
+    display: block;
+    width: 100% !important;
+    padding: 0% 10%;
+}
+.item-tabla{
+    display: block;
+    border: 1px solid rgb(150, 58, 58) !important
+}
+.index-tabla{
+    display: inline-block;
+    border: 1px solid rgb(65, 150, 184) !important
+}

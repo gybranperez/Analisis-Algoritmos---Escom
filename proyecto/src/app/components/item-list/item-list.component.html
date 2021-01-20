@@ -1,20 +1,21 @@
 <div>
+  <div>
     <h1>Problema de selección de actividades</h1>
-      <table *ngIf="hayRegistros(); else sinarticulos">
+      <table class="table table-striped table-hover" *ngIf="hayRegistros(); else sinarticulos">
         <thead>
-          <th>  ID</th>
-          <th>  Inicio</th>
-          <th>  Fin</th>
-          <th>Borrar</th>
-          <th> Seleccionar</th>
+          <th scope="col">  ID</th>
+          <th scope="col">  Inicio</th>
+          <th scope="col">  Fin</th>
+          <th scope="col">Borrar</th>
+          <th scope="col"> Seleccionar</th>
         </thead>
         <tbody>
           <tr *ngFor="let art of actividades">
-            <td>{{art.id}}</td>
+            <td scope="row">{{art.id}}</td>
             <td>{{art.inicio}}</td>
             <td>{{art.fin}}</td>
-            <td><button (click)="borrar(art)">Borrar</button></td>
-            <td><button (click)="seleccionar(art)">Seleccionar</button></td>        
+            <td><button type="button" class="btn btn-danger" (click)="borrar(art)">Borrar</button></td>
+            <td><button type="button" class="btn btn-warning" (click)="seleccionar(art)">Seleccionar</button></td>        
           </tr>
       </tbody>
       </table>
@@ -26,29 +27,38 @@
           </p>
         </section>
         <p>
-          Inicio:<input matInput type="number" [(ngModel)]="art.inicio">
+          Inicio:<input matInput type="number" [(ngModel)]="art.inicio"  min="1" step="1" onkeyup="if(this.value<0){this.value= this.value * -1}">
         </p>
         <p>
-          Fin:<input type="number" [(ngModel)]="art.fin" />
+          Fin:<input type="number" [(ngModel)]="art.fin"  min="2" step="1" onkeyup="if(this.value<0){this.value= this.value * -1}"/>
         </p>            
         <p>
-          <button (click)="agregar()">Agregar</button>
-          <button (click)="modificar()">Modificar</button>
-          <button (click)="encontrarActividades()">Obtener Optima</button>
+          <button type="button" class="btn btn-success" (click)="agregar()">Agregar</button>
+          <button type="button" class="btn btn-primary" (click)="modificar()">Modificar</button>
+          <button type="button" class="btn btn-secondary" (click)="encontrarActividades()">Obtener Optima</button>
         </p>
       </div>
   </div>
   <div>
-    <ol>
-      <li *ngFor="let it of optima">
-        {{it.inicio}} - {{it.fin}}
-      </li>
-    </ol>
-  </div>
-  <div>
     <p>
-      {{log}}
+      LOOOG: {{log}}
     </p>
   </div>
+  <section class="tabla-actividades">
+    <div  class="index-tabla"
+          *ngFor="let art of actividades; let i = index" 
+          [attr.data-index]="i">
+          {{i}}
+    </div>
+  </section>
+  <section class="tabla-actividades">
+    <div  class="item-tabla" [style.margin-left]=calcularMargen(art) [style.width]=calcularAncho(art)
+          *ngFor="let art of actividades; let i = index" 
+          [attr.data-index]="i">
+        {{art.inicio}} - {{art.fin}} 
+    </div>
+</section>
+</div>
+  
     
  

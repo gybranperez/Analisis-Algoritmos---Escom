@@ -22,10 +22,9 @@ export class ItemListComponent implements OnInit {
   actividades = new Array<Item>(
                   new Item(0,1,4),
                 new Item(1,3,5),
-                new Item(2,0,6),
-                new Item(3,5,7),
-                new Item(4,3,8),
-                new Item(3,5,9),
+                new Item(2,5,7),
+                new Item(3,3,8),
+                new Item(4,5,9),
                 new Item(5,6,10),
                 new Item(6,8,11),
                 new Item(7,8,12),
@@ -47,6 +46,8 @@ export class ItemListComponent implements OnInit {
 );*/
   optima:Item[]=[];
   log="";
+  rango={inicio:1,fin:1};
+  porcentajeAncho:number=0;
   hayRegistros() {
     return this.actividades.length>0;              
   }
@@ -75,7 +76,14 @@ export class ItemListComponent implements OnInit {
     this.art.inicio=art.inicio;
     this.art.fin=art.fin;
   }
-
+  calcularAncho(art:any){
+    let val = (art.fin - art.inicio) * this.porcentajeAncho;
+    return val + "% !important";
+  }
+  calcularMargen(art:any){
+    let val = (art.inicio - 1) * this.porcentajeAncho;
+    return val + "% !important";
+  }
   modificar() {
     for(let x=0;x<this.actividades.length;x++)
       if (this.actividades[x].id==this.art.id)
@@ -86,11 +94,19 @@ export class ItemListComponent implements OnInit {
       }        
     alert('No existe el código de articulo ingresado');
   }
-  range(start:number,end:number) {
-    let ar:number[]=new Array();
-    for (let index = start+1; index < end; index++) 
-      ar.push(index);
-    return ar;
+  rangoActividades() {
+    let rango={inicio:this.actividades[0].inicio,fin:this.actividades[0].fin};
+    for (let index = 0; index < this.actividades.length; index++) {
+      if (this.actividades[index].inicio < rango.inicio ) {
+        rango.inicio = this.actividades[index].inicio;
+      }
+      if (rango.fin < this.actividades[index].fin ) {
+        rango.fin = this.actividades[index].fin;
+      }
+    }
+    this.rango=rango;
+    this.log = "Rango : " + rango.inicio + " a " + rango.fin;
+    this.porcentajeAncho= 80/rango.fin;
   }
   contains(rango1:any,rango2:any){
     alert(rango1+"\n"+rango2);
@@ -102,11 +118,14 @@ export class ItemListComponent implements OnInit {
     return false;
   }
  encontrarActividades(){
+  
   let opciones:Item[] =[];
   for (let i = 0; i <= this.actividades.length+1; i++){
     opciones.push(new Item(0,0,0));
   }
+
   this.ordenarLista();
+  this.rangoActividades();
   for (let i = 1; i <= this.actividades.length; i++){
     opciones[i].inicio = 1;
     opciones[i].fin = i;
