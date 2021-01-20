@@ -17,7 +17,7 @@ export class ItemListComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  art:Item = new Item(-1,0,0);
+  art:Item = new Item(-1,1,2);
   
   actividades = new Array<Item>(
                   new Item(0,1,4),
@@ -70,8 +70,8 @@ export class ItemListComponent implements OnInit {
   agregar() {
     this.actividades.push(new Item(this.actividades.length,this.art.inicio,this.art.fin));
     this.art.id=-1;
-    this.art.inicio=0;
-    this.art.fin=0;    
+    this.art.inicio=1;
+    this.art.fin=2;    
     this.ordenarLista();
   }
 
