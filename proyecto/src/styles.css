@@ -1,5 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Quicksand:wght@500&display=swap');
+html, body { height: 100%; 
+overflow-x: hidden;}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.segundo-azul{
+    background-color: #02457A !important;
+}
+
 @import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+body { margin: 0; 
+    font-family: 'Quicksand', sans-serif !important;
+    background-color: #001848 !important;}

@@ -1,14 +1,15 @@
-<nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid">
-    <span class="navbar-brand mb-0 h1">Problema de selección de actividades</span>
-  </div>
+<nav class="navbar sticky-top  navbar-dark bg-dark">
+  <a class="navbar-brand">
+    <img src="https://www.escom.ipn.mx/images/logoESCOMBlanco.png" width="30" height="25" class="d-inline-block align-top" alt="">
+    Problema de selección de actividades con programación dinámica
+  </a>
 </nav>
+
 <div class="container-fluid">
   <div class="row">
-    <div id="registroActividades" class="col-12 col-md-4">
-        <table class="table table-striped table-hover" *ngIf="hayRegistros(); else sinarticulos">
+    <div id="registroActividades" class="col-12 col-xs-10 offset-xs-1 col-md-4 pt-xs-2">
+        <table class="table table-striped table-hover bg-white" *ngIf="hayRegistros(); else sinarticulos">
           <thead>
-            <th scope="col">  ID</th>
             <th scope="col">  Inicio</th>
             <th scope="col">  Fin</th>
             <th scope="col">Borrar</th>
@@ -16,8 +17,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let art of actividades">
-              <td scope="row">{{art.id}}</td>
-              <td>{{art.inicio}}</td>
+              <td scope="row">{{art.inicio}}</td>
               <td>{{art.fin}}</td>
               <td>
                 <button class="btn btn-danger" (click)="borrar(art)">Borrar</button>
@@ -31,71 +31,88 @@
         <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
         
     </div>
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-8 ">
       <div class="row">
-        <div class="col-12 bg-warning">
-          <section *ngIf="art.id">
-            <p *ngIf="0 <= art.id">
-                Id:{{art.id}}
-            </p>
-          </section>
+        <div class="col-12 segundo-azul p-2">
           <div class="row">
-            <div class="col-6">
-              <label for="Inicio" class="form-label">Inicio:</label>
-              <input id="Inicio" class="form-control" matInput type="number" [(ngModel)]="art.inicio"  min="1" step="1" onkeyup="if(this.value<0){this.value= this.value * -1}">
+            <div class="col-6 col-md-3">
+              <div class="row">
+              <label for="Inicio" class="col-4 col-form-label">Inicio:</label>
+              <input id="Inicio" class="form-control col-8" matInput type="number" [(ngModel)]="art.inicio"  min="1" step="1" onkeyup="if(this.value<0){this.value= this.value * -1}">
+              </div>
             </div>
-            <div class="col-6">
-              <label for="Fin" class="form-label">Fin:</label>
-              <input id="Fin" class="form-control" type="number" [(ngModel)]="art.fin"  min="2" step="1" onkeyup="if(this.value<0){this.value= this.value * -1}"/>
+            <div class="col-6 col-md-3">
+              <div class="row">
+              <label for="Fin"  class="col-4 col-form-label">Fin:</label>
+                <input id="Fin" class="form-control col-8" type="number" [(ngModel)]="art.fin"  min="2" step="1" onkeyup="if(this.value<0){this.value= this.value * -1}"/>
+              </div>
             </div>
-          </div>      
-          <p>
-            <button type="button" class="btn btn-success" (click)="agregar()">Agregar</button>
-            <button type="button" class="btn btn-primary" (click)="modificar()">Modificar</button>
-            <button type="button" class="btn btn-secondary" (click)="encontrarActividades()">Obtener Optima</button>
-          </p>
+            <div class="col-12 col-md-6">
+              <div class="form-inline my-2 my-lg-0">
+                <button type="button" class="btn btn-success  my-2 my-sm-0" (click)="agregar()">Agregar</button>
+                <button type="button" class="btn btn-primary  my-2 my-sm-0 ml-2 mr-2" (click)="modificar()">Modificar</button>
+                <button type="button" class="btn btn-secondary  my-2 my-sm-0" (click)="encontrarActividades()">Obtener Optima</button>
+              </div>
+            </div>
+          </div>    
         </div>
       </div>
-      <div class="row pt-4 pl-4">
+      
+      <div class="row p-4 color-white info">
+        {{info}}
+      </div>
+      
+      <div class="row pl-4">
         <section class="indice-actividades bg-primary d-flex justify-content-between">
-          <div  class="index-tabla"
+          <div  class="color-white"
                 *ngFor="let art of obtenerArreglo(); let i = index" 
                 [attr.data-index]="i">
                 {{i+1}}
           </div>
         </section>
-        <section class="tabla-actividades col-12" *ngIf="show">
-          <div  class="item-tabla" [style.margin-left]=calcularMargen(art) [style.width]=calcularAncho(art)
-                *ngFor="let art of actividades; let i = index" 
+        <section class="tabla-actividades col-12" *ngIf="mostrarAnimacion">
+          <div  class="item-tabla color-white" 
+                [ngClass]="art.color"
+                [style.margin-left]=calcularMargen(art) [style.width]=calcularAncho(art)
+                *ngFor="let art of actividades; let i = index"
                 [attr.data-index]="i">
               {{art.inicio}} - {{art.fin}} 
           </div>
         </section>
         <section class="indice-actividades bg-primary d-flex justify-content-between">
-          <div  class="index-tabla"
+          <div  class="color-white"
                 *ngFor="let art of obtenerArreglo(); let i = index" 
                 [attr.data-index]="i">
                 {{i+1}}
           </div>
         </section>
-          <div class="col-12">
-            <h1>
-              Rango: {{log}}
-            </h1>
-          </div>
-          <div class="col-12">
-            <h1>
+        <section class="d-flex justify-content-left mt-3">
+            <h1 class="color-white">
               Solucion optima: 
             </h1>
             <div class="btn-group" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-primary" *ngFor="let art of optima; let i = index">{{art}}</button>
+              <button 
+                type="button" 
+                class="btn segundo-azul color-white" 
+                *ngFor="let art of optima; let i = index">
+                  {{art}}
+                </button>
             </div>
-        </div>
+          </section>
       </div>
     </div>
   </div>
 
 </div>
-  
-    
  
+
+<div class="container-fluid bg-light">
+  <div class="row">
+    here are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum gener
+  </div>
+</div> 
+<div class="container-fluid bg-light">
+  <div class="row">
+datos
+  </div>
+</div> 

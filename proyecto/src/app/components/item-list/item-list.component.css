@@ -1,25 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Quicksand:wght@500&display=swap');
 body{
-    max-height: 100vh !important;
-    overflow: hidden;
+    font-family: 'Quicksand', sans-serif !important;
+    box-sizing: border-box;
 }
 .tabla-actividades{
     display: block;
-    width: 100% !important;
-    overflow-y: hidden;
     padding: 0% !important;
 }
+
 .indice-actividades{
     width: 95% !important;
 }
 .item-tabla{
     display: block;
-    border: 1px solid rgb(150, 58, 58) !important
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 3px;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 0 2px 6px rgba(0,0,0,1);
+    transition: all ease !important;
 }
 .index-tabla{
     display: inline-block;
-    border: 1px solid rgb(65, 150, 184) !important
+    border: 1px solid rgb(65, 150, 184) !important;
 }
 #registroActividades{
-    height: calc(100vh - 32px) !important;
+    height: calc(100vh - 48px) !important;
+    max-height: calc(100vh - 48px) !important;
+    background-color: white;
     overflow-y: auto;
+    padding: 0 !important;
+    padding-bottom: 40px !important;
+}
+tbody tr td,.info{
+    font-size: 18px;
+}
+label{
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+}
+.color-white{
+    color: antiquewhite;
+}
+.color-primer-azul{
+    color: #001848;
 }

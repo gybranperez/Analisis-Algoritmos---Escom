@@ -23,12 +23,12 @@ export class ItemListComponent implements OnInit {
                   new Item(0,1,4),
                 new Item(1,3,5),
                 new Item(2,5,7),
-                new Item(3,3,8),
+                //new Item(3,3,8),
                 new Item(4,5,9),
                 new Item(5,6,10),
                 new Item(6,8,11),
                 new Item(7,8,12),
-                new Item(8,2,13),
+                //new Item(8,2,13),
                 new Item(9,12,14)
   );
   
@@ -44,8 +44,9 @@ export class ItemListComponent implements OnInit {
   new Item(3,2,4)
   
 );*/
-  show:boolean=false;
+mostrarAnimacion:boolean=false;
   optima:Item[]=[];
+  info:string="";
   log="";
   rango={
     inicio:1,
@@ -71,7 +72,7 @@ export class ItemListComponent implements OnInit {
     this.actividades.push(new Item(this.actividades.length,this.art.inicio,this.art.fin));
     this.art.id=-1;
     this.art.inicio=1;
-    this.art.fin=2;    
+    this.art.fin=2;   
     this.ordenarLista();
   }
 
@@ -109,7 +110,7 @@ export class ItemListComponent implements OnInit {
       }
     }
     this.rango=rango;
-    this.log = "Rango : " + rango.inicio + " a " + rango.fin;
+    this.log =  rango.inicio + " a " + rango.fin;
     this.porcentajeAncho= 100/rango.fin;
   }
   obtenerArreglo(){
@@ -119,28 +120,48 @@ export class ItemListComponent implements OnInit {
     }
     return a;
   }
- encontrarActividades(){
-  this.show=true;
+ encontrarActividades = async () => {
+  this.mostrarAnimacion=true;
   let opciones:Item[] =[];
-  for (let i = 0; i <= this.actividades.length+1; i++){
+  for (let i = 0; i <= this.actividades.length; i++){
     opciones.push(new Item(0,0,0));
   }
-
+  for (let i = 0; i < this.actividades.length; i++){
+    this.actividades[i].color="bg-info";
+  }
   this.ordenarLista();
   this.rangoActividades();
+  
+  this.info="Revisaremos todas las actividades...\n";
+  await new Promise(resolve => setTimeout(resolve, 2500));
   for (let i = 1; i <= this.actividades.length; i++){
     opciones[i].inicio = 1;
     opciones[i].fin = i;
     let  temp = 0;
     for (let j = 1; j < i; j++){
+      this.info="¿ " + this.actividades[j-1] + " termina antes que inicie " + this.actividades[i-1] + "?";
+      
+      this.actividades[j-1].color = "bg-warning";
+      this.actividades[i-1].color = "bg-danger";
+      await new Promise(resolve => setTimeout(resolve, 3500)); // 3 sec
       if(this.actividades[j-1].fin <= this.actividades[i-1].inicio){
         if (opciones[j].inicio + 1 > opciones[i].inicio) {
+          this.actividades[j-1].color = "bg-success";
+          let tem = opciones[i];
           opciones[i].inicio = opciones[j].inicio + 1;
           opciones[i].fin = j;
         }
         opciones[i].inicio = (opciones[i].inicio > 1 + opciones[j].inicio) ? opciones[i].inicio : 1 + opciones[j].inicio;
+        this.info="La longitud hasta ahora en esta iteración es: " + opciones[i].inicio;
+        await new Promise(resolve => setTimeout(resolve, 800));
+      }else{
+        this.info="No lo hace, por lo tanto seguimos...";
+        await new Promise(resolve => setTimeout(resolve, 800)); // 3 sec
       }
+      await new Promise(resolve => setTimeout(resolve, 1000)); // 3 sec  
+      this.actividades[j-1].color = (this.actividades[j-1].color=="bg-success")?"bg-success":"bg-info";
     }
+    this.actividades[i-1].color = "bg-info";
   }
   let max = 0;
   let pos = -1;
@@ -150,12 +171,15 @@ export class ItemListComponent implements OnInit {
         max = opciones[i].inicio;
     }
   }
+  this.info="El número mayor de actividades que se pueden realizar es: " + max;
   this.optima = [];
   while(opciones[pos].inicio != 1){
     this.optima.push(this.actividades[pos-1]);
+    this.actividades[pos-1].color="bg-success";
     pos = opciones[pos].fin;
   }
   this.optima.push(this.actividades[pos-1]);
+  this.actividades[pos-1].color="bg-success";
  }
  duracionActividad(art:Item){
   return art.fin - art.inicio;
@@ -163,6 +187,8 @@ export class ItemListComponent implements OnInit {
   ordenarLista(){
     this.actividades.sort((left, right) => {
       if (left.inicio > right.inicio) return 1;
+      if (left.inicio < right.inicio) return -1;
+      if (left.inicio == right.inicio && left.fin < right.fin) return -1;
       if ((left.inicio == right.inicio) && (right.fin-right.inicio < left.fin-left.inicio)) return 1;
       return 0;
     })
