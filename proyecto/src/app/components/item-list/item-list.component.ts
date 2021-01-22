@@ -145,15 +145,20 @@ mostrarAnimacion:boolean=false;
       this.actividades[i-1].color = "bg-danger";
       await new Promise(resolve => setTimeout(resolve, 3500)); // 3 sec
       if(this.actividades[j-1].fin <= this.actividades[i-1].inicio){
+
         if (opciones[j].inicio + 1 > opciones[i].inicio) {
           this.actividades[j-1].color = "bg-success";
           let tem = opciones[i];
           opciones[i].inicio = opciones[j].inicio + 1;
           opciones[i].fin = j;
+          this.info="Si, por lo tanto " + this.actividades[j-1] + " se toma en cuenta, llevamos " + opciones[i].inicio;
+        await new Promise(resolve => setTimeout(resolve, 2500));
+        }else{
+          this.info="Ya tomamos otro elemento previamente, por lo tanto " + this.actividades[opciones[j].inicio] + " no se añade";
+          await new Promise(resolve => setTimeout(resolve, 2000));
         }
         opciones[i].inicio = (opciones[i].inicio > 1 + opciones[j].inicio) ? opciones[i].inicio : 1 + opciones[j].inicio;
-        this.info="La longitud hasta ahora en esta iteración es: " + opciones[i].inicio;
-        await new Promise(resolve => setTimeout(resolve, 800));
+        
       }else{
         this.info="No lo hace, por lo tanto seguimos...";
         await new Promise(resolve => setTimeout(resolve, 800)); // 3 sec

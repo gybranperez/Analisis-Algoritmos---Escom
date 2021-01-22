@@ -1,29 +1,48 @@
-<nav class="navbar sticky-top  navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg  fixed-top  navbar-dark bg-dark">
   <a class="navbar-brand">
     <img src="https://www.escom.ipn.mx/images/logoESCOMBlanco.png" width="30" height="25" class="d-inline-block align-top" alt="">
-    Problema de selección de actividades con programación dinámica
+    Selección de actividades <span class="d-none d-md-inline"> programación dinámica</span>
   </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#plataforma">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#resumen">Procedimiento</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#contacto">Acerca</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 
-<div class="container-fluid">
-  <div class="row">
-    <div id="registroActividades" class="col-12 col-xs-10 offset-xs-1 col-md-4 pt-xs-2">
+<div class="container-fluid mt-4 pt-3" id="plataforma">
+  <div class="row mt-3">
+    <div id="registroActividades" class="col-12 col-md-4 pt-xs-2 d-none d-xs-none d-sm-none d-md-inline d-lg-inline d-xl-inline">
         <table class="table table-striped table-hover bg-white" *ngIf="hayRegistros(); else sinarticulos">
           <thead>
-            <th scope="col">  Inicio</th>
-            <th scope="col">  Fin</th>
-            <th scope="col">Borrar</th>
-            <th scope="col"> Seleccionar</th>
+            <th scope="col d-none d-sm-none d-md-inline">  ID</th>
+            <th scope="col"> Inicio</th>
+          <th scope="col"> Fin </th>
+          <th scope="col">Borrar</th>
+          <th scope="col">Editar</th>
           </thead>
           <tbody>
-            <tr *ngFor="let art of actividades">
+            <tr *ngFor="let art of actividades let i = index"
+            [attr.data-index]="i" class="">
+            <td scope="row d-none d-sm-none d-md-inline">{{i+1}}</td>
               <td scope="row">{{art.inicio}}</td>
               <td>{{art.fin}}</td>
               <td>
-                <button class="btn btn-danger" (click)="borrar(art)">Borrar</button>
+                <button class="btn btn-danger btn-sm" (click)="borrar(art)"><i class="material-icons">delete</i></button>
               </td>
               <td>
-                <button class="btn btn-warning" (click)="seleccionar(art)">Seleccionar</button>
+                <button class="btn btn-warning btn-sm" (click)="seleccionar(art)"><i class="material-icons">edit</i></button>
               </td>        
             </tr>
         </tbody>
@@ -47,11 +66,11 @@
                 <input id="Fin" class="form-control col-8" type="number" [(ngModel)]="art.fin"  min="2" step="1" onkeyup="if(this.value<0){this.value= this.value * -1}"/>
               </div>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 pr-2">
               <div class="form-inline my-2 my-lg-0">
-                <button type="button" class="btn btn-success  my-2 my-sm-0" (click)="agregar()">Agregar</button>
-                <button type="button" class="btn btn-primary  my-2 my-sm-0 ml-2 mr-2" (click)="modificar()">Modificar</button>
-                <button type="button" class="btn btn-secondary  my-2 my-sm-0" (click)="encontrarActividades()">Obtener Optima</button>
+                <button type="button" class="btn btn-success  my-2 my-sm-0" (click)="agregar()"><i class="material-icons">add</i></button>
+                <button type="button" class="btn btn-primary  my-2 my-sm-0 ml-2 mr-2" (click)="modificar()"><i class="material-icons">edit</i></button>
+                <button type="button" class="btn btn-secondary  my-2 my-sm-0" (click)="encontrarActividades()">Resolver</button>
               </div>
             </div>
           </div>    
@@ -101,18 +120,113 @@
           </section>
       </div>
     </div>
+
+    <div id="registroActividades" class="col-12 col-md-4 pt-xs-2 d-block d-xs-block d-sm-block d-md-none d-lg-none d-xl-none">
+      <table class="table table-striped table-hover bg-white" *ngIf="hayRegistros(); else sinarticulos">
+        <thead>
+          <th scope="col d-none d-sm-none d-md-inline">  ID</th>
+          <th scope="col"> Inicio</th>
+          <th scope="col"> Fin </th>
+          <th scope="col">Borrar</th>
+          <th scope="col">Editar</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let art of actividades let i = index"
+          [attr.data-index]="i" class="">
+          <td scope="row d-none d-sm-none d-md-inline">{{i+1}}</td>
+            <td scope="row">{{art.inicio}}</td>
+            <td>{{art.fin}}</td>
+            <td>
+                <button class="btn btn-danger btn-sm" (click)="borrar(art)"><i class="material-icons">delete</i></button>
+              </td>
+              <td>
+                <button class="btn btn-warning btn-sm" (click)="seleccionar(art)"><i class="material-icons">edit</i></button>
+              </td>        
+          </tr>
+      </tbody>
+      </table>
+      <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
+      
+  </div>
+
   </div>
 
 </div>
  
 
-<div class="container-fluid bg-light">
-  <div class="row">
-    here are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum gener
+<div class="row" id="resumen">
+  <div class="container-fluid bg-light">
+    <div class="d-flex p-3">
+      <section class="col-12 col-md-6">
+        <h1>Explicación</h1>
+        Dado un conjunto de actividades con la hora de inicio y finalización de cada actividad, encontraremos el número máximo de actividades que puede realizar una sola persona asumiendo que una persona solo puede trabajar una actividad a la vez.
+        <br>
+        <br>
+      Este problema se denomina problema de selección de actividades y se refiere a la selección de actividades no conflictivas para realizar dentro de un marco de tiempo dado un conjunto de actividades, cada una marcada por un tiempo de inicio y finalización.
+        <br>
+        <br>
+      La idea es clasificar primero las actividades dadas en orden creciente de su hora de inicio. Sea trabajos [0..n-1] la matriz ordenada de actividades. Podemos definir nuestra matriz L [] tal que L[i] en sí misma es una matriz que almacena el máximo de trabajos no conflictivos que terminan en el i-ésimo trabajo. Por lo tanto, L[i] lo podemos escribir de forma recursiva.
+        <br>
+        <br>
+        La complejidad de la solución a este problema es O(n^2) donde n es el número de actividades dadas.
+        <br>
+        <br>
+      </section>
+      <section class="col-12 col-md-6">
+        <img src="https://eecs.wsu.edu/~cook/aa/lectures/l9/img16.gif" class="col-12 img img-responsive" alt="">
+      </section>
+      
+    </div>
   </div>
 </div> 
-<div class="container-fluid bg-light">
-  <div class="row">
-datos
-  </div>
+<div class="container-fluid color-white" id="contacto">
+  <div class="row p-3">
+    <div class="col card m-4">
+      <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Cras justo odio</li>
+      <li class="list-group-item">Dapibus ac facilisis in</li>
+      <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+    </div>
+    <div class="col card m-4">
+      <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Cras justo odio</li>
+      <li class="list-group-item">Dapibus ac facilisis in</li>
+      <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+    </div>
+    <div class="col card m-4">
+      <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Cras justo odio</li>
+      <li class="list-group-item">Dapibus ac facilisis in</li>
+      <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+    </div>
 </div> 
