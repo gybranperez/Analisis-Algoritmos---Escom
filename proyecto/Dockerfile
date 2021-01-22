@@ -1,12 +1,10 @@
-### STAGE 1: Build ###
-FROM node:12.7-alpine AS build
-WORKDIR /usr/src/app
-COPY package.json package-lock.json ./
-RUN npm install
+FROM node:13.3.0 AS compile-image    
+COPY package.json package-lock.json ./    
+RUN npm install && mkdir /angular-app
+ENV PATH="./node_modules/.bin:$PATH"
+WORKDIR /angular-app
 COPY . .
-RUN npm run build --prod
-
-### STAGE 2: Run ###
-FROM nginx:1.18.0-alpine
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /usr/src/app/dist/proyecto/ /usr/share/nginx/html
+RUN ng build --prod
+FROM nginx
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=compile-image /proyecto/dist /usr/share/nginx/html
