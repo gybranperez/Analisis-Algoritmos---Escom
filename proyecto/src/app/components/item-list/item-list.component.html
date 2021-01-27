@@ -90,12 +90,19 @@
           </div>
         </section>
         <section class="tabla-actividades col-12" *ngIf="mostrarAnimacion">
-          <div  class="item-tabla color-white" 
+          <div  class="item-tabla color-white zoom" 
                 [ngClass]="art.color"
                 [style.margin-left]=calcularMargen(art) [style.width]=calcularAncho(art)
                 *ngFor="let art of actividades; let i = index"
                 [attr.data-index]="i">
-              {{art.inicio}} - {{art.fin}} 
+                <span class="activado">
+                  Inicio:
+                </span>
+              {{art.inicio}} - 
+              <span class="activado">
+                Fin:
+              </span>
+              {{art.fin}} 
           </div>
         </section>
         <section class="indice-actividades bg-primary d-flex justify-content-between">
@@ -153,80 +160,151 @@
 
 </div>
  
-
-<div class="row" id="resumen">
-  <div class="container-fluid bg-light">
-    <div class="d-flex p-3">
-      <section class="col-12 col-md-6">
-        <h1>Explicación</h1>
-        Dado un conjunto de actividades con la hora de inicio y finalización de cada actividad, encontraremos el número máximo de actividades que puede realizar una sola persona asumiendo que una persona solo puede trabajar una actividad a la vez.
-        <br>
-        <br>
-      Este problema se denomina problema de selección de actividades y se refiere a la selección de actividades no conflictivas para realizar dentro de un marco de tiempo dado un conjunto de actividades, cada una marcada por un tiempo de inicio y finalización.
-        <br>
-        <br>
-      La idea es clasificar primero las actividades dadas en orden creciente de su hora de inicio. Sea trabajos [0..n-1] la matriz ordenada de actividades. Podemos definir nuestra matriz L [] tal que L[i] en sí misma es una matriz que almacena el máximo de trabajos no conflictivos que terminan en el i-ésimo trabajo. Por lo tanto, L[i] lo podemos escribir de forma recursiva.
-        <br>
-        <br>
-        La complejidad de la solución a este problema es O(n^2) donde n es el número de actividades dadas.
-        <br>
-        <br>
+<div class="container-fluid" id="resumen">
+  <section class="row p-5 bg-light">
+    <h1>Explicación</h1>
+    <p>
+      Dado un conjunto de actividades con la hora de inicio y finalización 
+      de cada actividad, encontraremos el número máximo de actividades que 
+      puede realizar una sola persona asumiendo que una persona solo puede 
+      trabajar una actividad a la vez.
+    </p>
+    <p>
+      Este problema se denomina problema de selección de actividades y se 
+      refiere a la selección de actividades no conflictivas para realizar 
+      dentro de un marco de tiempo dado un conjunto de actividades, cada 
+      una marcada por un tiempo de inicio y finalización.
+    </p>
+  </section>
+  <div class="row bg-light pb-5">
+    <section class=" pl-5 col-12 col-md-7">
+      <p>
+        La idea es clasificar primero las actividades dadas en orden creciente 
+        de su hora de inicio. Sea trabajos [0..n-1] la matriz ordenada de 
+        actividades. Podemos definir nuestra matriz L [] tal que L[i] en sí 
+        misma es una matriz que almacena el máximo de trabajos no conflictivos 
+        que terminan en el i-ésimo trabajo. Por lo tanto, L[i] lo podemos 
+        escribir de forma recursiva.
+      </p>
+      <p>
+        La complejidad de la solución a este problema es O(n^2) donde n 
+        es el número de actividades dadas.
+      </p>
+      
+    </section>
+    <section class="col-12 col-md-5">
+      <img src="https://eecs.wsu.edu/~cook/aa/lectures/l9/img16.gif" class="col-11 img-fluid" alt="">
+    </section>
+    
+  </div>
+  <div class="row bg-light pb-2">
+    <section class="col-12">
+      <h1>Complejidad del algoritmo</h1>
+    </section>
+  </div>
+  <div class="row bg-light pb-2">
+      <section class="col-12 col-md-8">
+        <p>
+          La complejidad temporal del algoritmo de actividades por el método de programación 
+          dinámica en su peor caso se explica en el siguiente análisis:
+        </p><p>
+          La complejidad del ordenamiento (sort) del arreglo de actividades, 
+          previo a la implementación del algoritmo, se comporta como un O(n log), 
+          sobre todo si son de métodos o funciones dentro de bibliotecas del mismo código.
+        </p>
+        <p>
+          La complejidad del primer for responde como un O(n), ya que es necesario 
+          iterar cada una de las actividades, si se compara con el for anidado saca 
+          una complejidad (en el peor de los casos) similar a la siguiente fórmula:
+          <strong class="d-block text-center text-bold">n(n+1)/2=O(n^2)</strong>
+        </p>
+        
+        <p>
+          Si se cumplen con los if anidados, su complejidad se acota como O(1), ya 
+          que solo corresponden con operaciones primitivas para la matriz tab de (n+1) x 2.
+          Por último, la complejidad de la búsqueda del máximo valor en cada uno de los elementos
+           en tab [i][0] se acota en O(n).
+        </p>
+        <p>
+          Bajo el análisis de bloques, se desarrolla la siguiente operación: <br>
+          <strong class="text-center d-block">(O(n log⁡n ),O(n^2 ),O(n))=O(n^2)</strong>⁡
+        </p>
+        <h2>Complejidad espacial:</h2>
+        <p>
+          Como las actividades responden a un arreglo de tamaño n y una matriz 
+          n x 2, se concluye que su complejidad espacial es de O(n)
+        </p>
       </section>
-      <section class="col-12 col-md-6">
-        <img src="https://eecs.wsu.edu/~cook/aa/lectures/l9/img16.gif" class="col-12 img img-responsive" alt="">
+      <section class="col-12 col-md-4">
+        <img src="assets/img/complejidad.jpg" class="img-fluid" alt="">
       </section>
       
-    </div>
   </div>
-</div> 
+</div>
+
+
 <div class="container-fluid color-white" id="contacto">
   <div class="row p-3">
-    <div class="col card m-4">
-      <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <div class="col-12 col-md-4 p-2 zoom">
+      <div class="row">
+        <div class="col-6 offset-3">
+          <img class="card-img-top" src="assets/img/profile/Ricardo.jpeg" alt="Card image cap">
+        </div>
+      </div>
+      
+      <div class="card-body">
+        <h3 class="card-title text-center">Pérez Sereno Ricardo Erick</h3>
+        <p class="card-text">Estudiante de la escuela superior de computo, me interesa aprender react y me gusta la pizza.</p>
+        </div>
+        <div class="card-body d-block">
+          <a href="https://github.com/ricardoEperezS" class="card-link col right" target="_blank">
+            <button class="text-right btn btn-warning"><i class="material-icons mr-1 pb-1">devices</i>Github</button>
+          </a>
+        </div>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Cras justo odio</li>
-      <li class="list-group-item">Dapibus ac facilisis in</li>
-      <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
+
+
+
+    <div class="col-12 col-md-4 p-2 zoom">
+      <div class="row">
+        <div class="col-6 offset-3">
+          <img class="card-img-top" src="https://pbs.twimg.com/profile_images/1098056250456043520/SH-NyvIP_400x400.jpg" alt="Card image cap">
+        </div>
+      </div>
+      
+      <div class="card-body">
+        <h3 class="card-title text-center">Pérez Juárez Carlos Gybrán</h3>
+        <p class="card-text">Disfruto codificar y practicar cosas nuevas en el proceso, actualmente estoy trabajando para convertirme en una mejor versión de mí mismo.
+          Sigo aprendiendo nuevas tecnologías y probándolas.</p>
+        </div>
+        <div class="card-body d-flex">
+          <a href="https://www.linkedin.com/in/gybranperez/" class="card-link col" target="_blank">
+            <button class=" btn btn-info"><i class="material-icons mr-1 pb-2">link</i>LinkedIn</button>
+          </a>
+          <a href="https://github.com/gybranperez" class="card-link col" target="_blank">
+            <button class="text-right btn btn-warning"><i class="material-icons mr-1 pb-1">devices</i>Github</button>
+          </a>
+        </div>
     </div>
-    </div>
-    <div class="col card m-4">
-      <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Cras justo odio</li>
-      <li class="list-group-item">Dapibus ac facilisis in</li>
-      <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
-    </div>
-    <div class="col card m-4">
-      <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Cras justo odio</li>
-      <li class="list-group-item">Dapibus ac facilisis in</li>
-      <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
+
+
+
+    <div class="col-12 col-md-4 p-2 zoom">
+      <div class="row">
+        <div class="col-6 offset-3">
+          <img class="card-img-top" src="assets/img/profile/juan.jpg" alt="Card image cap">
+        </div>
+      </div>
+      
+      <div class="card-body">
+        <h3 class="card-title text-center">Ramirez Flores Juan</h3>
+        <p class="card-text">Disfruto codificar y practicar cosas nuevas en el proceso, actualmente estoy trabajando para convertirme en una mejor versión de mí mismo.
+          Sigo aprendiendo nuevas tecnologías y probándolas.</p>
+        </div>
+        <div class="card-body d-block">
+          <a href="https://github.com/JohnRFK" class="card-link col" target="_blank">
+            <button class="text-right btn btn-warning"><i class="material-icons mr-1 pb-1">devices</i>Github</button>
+          </a>
+        </div>
     </div>
 </div> 
